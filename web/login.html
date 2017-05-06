@@ -2,9 +2,49 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>로그인</title>
+    <title>Fabre - LoginPage</title>
+    <link rel="stylesheet" href="./css/default.css">
   </head>
   <body>
+
+
+    <div class="wrapper-login">
+
+      <header>
+        <!--헤더 왼쪽 로고-->
+
+        <div class="header-logo">
+          <img src="./images/logo.png" alt="logo" style="height:50px; width:auto;">
+        </div>
+
+      </header>
+
+      <div class="container-login">
+
+        <div class="login">
+          <form class="login-form" action="LoginServlet" method="post">
+
+            <div class="login-box">
+              <input type="text" name="login-id" placeholder="이메일">
+              <input type="password" name="login-pw" placeholder= "비밀번호" >
+              <button type="submit" name="submit">로그인</button>
+            </div>
+
+          </form>
+          <div class="user-register">
+            <p><a href="#">아이디/비밀번호 찾기</a></p>
+            <p><a href="#">회원가입</a></p>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <p>
+          Fabre 웹시스템 개발 프로젝트
+        </p>
+      </footer>
+
+    </div>
 
   </body>
 </html>
