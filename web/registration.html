@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Fabre - RegistrationPage</title>
+    <link rel="stylesheet" href="./css/default.css">
   </head>
   <body>
     <div class="wrapper">
@@ -13,24 +14,60 @@
         <div class="header-logo">
           <img src="./images/logo.png" alt="logo" style="height:50px; width:auto;">
         </div>
-        <!-- 헤더 오른쪽 로그아웃/내정보페이지 -->
-        <div class="header-menunav">
-          <span>
-            Main Page
-            <img src="./images/menu_down.svg" alt="menu_down" style="height : 13px; width : auto;">
-          </span>
-
-          <ul class="header-menunav-slidemenu" id="slidemenu">
-            <li><a href="#">Main Page</a></li>
-            <li><a href="#">My Page</a></li>
-            <li><a href="#">Developers Page</a></li>
-            <li><a href="#">Logout</a></li>
-          </ul>
-        </div>
 
       </header>
 
       <div class="container">
+
+        <nav>
+          <div class="nav-list-header">
+
+          </div>
+          <div class="nav-list-main">
+            <ul class="registration-nav-list">
+              <li><span class="nav-list-thisPage">기본정보입력</span></li>
+              <li><span>튜토리얼</span></li>
+              <li><span>크롤러 추가</span></li>
+            </ul>
+
+          </div>
+
+        </nav>
+
+        <article id="first-registration">
+          <div class="article-header">
+
+          </div>
+          <div class="article-main">
+
+            <form class="registration-main" action="RegistrationServlet" method="post">
+              <div class="registration-main-nickname">
+                <span>닉네임</span>
+                <input type="text" placeholder="닉네임">
+              </div>
+              <div class="registration-main-email">
+                <span>이메일</span>
+                <input type="text" placeholder="이메일">
+              </div>
+              <p>이메일을 입력해주세요 / 중복확인 메세지</p>
+              <div class="registration-main-password">
+                <span>비밀번호</span>
+                <input type="password" placeholder="비밀번호">
+              </div>
+              <p>비밀번호를 입력해주세요 / ok/error</p>
+              <div class="registration-main-pwcheck">
+                <span>비밀번호확인</span>
+                <input type="password" placeholder="비밀번호확인">
+              </div>
+              <p>비밀번호를 다시 입력해주세요 / ok/error</p>
+              <button type="submit" name="registration">제출</button>
+
+            </form>
+
+          </div>
+
+        </article>
+
 
       </div>
 

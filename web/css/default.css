@@ -108,11 +108,16 @@ nav {
 }
 
 .nav-list-main li span{
+  position: relative;
+  top: 6px;
   display: inline-block;
   width: 145px;
   margin : 5px;
   text-align: left;
   border-bottom: 0.5px solid rgb(217, 217, 217);
+  overflow: hidden;
+  white-space: nowrap;
+  -webkit-line-clamp: 1;
 }
 
 .nav-list-footer {
@@ -216,11 +221,11 @@ form{
   font-weight: border;
 }
 
+
 .container-login{
   height:600px;
   width: 800px;
   margin: 0 auto;
-  background-color: rgba(255, 255, 255, 0.5);
 }
 
 .container-login a{
@@ -237,10 +242,11 @@ form{
 }
 
 .login-box input{
-  width: 80%;
+  width: 74.5%;
   height: 35px;
   margin: 5px 10%;
   border-radius: 3px;
+  padding : 0 15px;
 }
 .login-box button{
   width: 80%;
@@ -260,4 +266,60 @@ form{
   margin: 0 auto;
   text-align: center;
   font-weight: bolder;
+}
+
+/*registration css*/
+.registration-main{
+  width: 70%;
+  margin: 0 auto;
+}
+.registration-main div{
+  margin : 12px 0;
+  border-bottom: 1px solid rgb(217, 217, 217);
+}
+
+.registration-main p{
+  color: rgb(186, 186, 186);
+  font-size: 13px;
+}
+
+.registration-main span{
+  width: 28%;
+  display: inline-block;
+  margin : 6px 0;
+  font-weight: bolder;
+  position: relative;
+  top: 1.5px;
+}
+
+.registration-main input{
+  width: 68%;
+  height: 24px;
+  margin : 6px 0;
+  display: inline-block;
+  padding : 0 6px;
+}
+
+.registration-main button{
+    width: 60%;
+    height: 35px;
+    border: 0;
+    border-radius: 3px;
+    outline: 0;
+    background-color: rgb(255, 87, 83);
+    color: white;
+    position: relative;
+    left: 20%;
+    top: 20px;
+}
+
+.registration-nav-list li{
+  text-align: center;
+  font-weight: bolder;
+}
+
+.nav-list-thisPage {
+  color: rgb(255, 87, 83);
+  border-bottom: 1.5px solid rgb(217,217,217) !important;
+  box-shadow: 0px 0.7px 0px rgb(186,186,186);
 }
