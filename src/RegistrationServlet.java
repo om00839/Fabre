@@ -13,6 +13,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.LinkedList;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,7 +26,8 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
-public class RegisterationServlet extends HttpServlet {
+public class RegistrationServlet extends HttpServlet {
+	private static final Lock lock = new ReentrantLock();
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 	{	
@@ -36,14 +39,17 @@ public class RegisterationServlet extends HttpServlet {
 		   try {
 //				
 				String user_ID = request.getParameter("user_ID");
+				String Nick_Name=request.getParameter("Nick_Name");
 				String password=request.getParameter("password");
+//				String passwordCheck=request.getParameter("passwordCheck");
 				
 				//call insertUserTable function
-				//userId,password,lastname, firstname, age)
-				boolean success= insertUserTable(user_ID, password);
+				//user_ID,password,Nick_Name, passwordCheck, age)
+				boolean success= insertUserTable(user_ID,Nick_Name, password);
 				String message= "";
+				
 				if(success){
-					message="You were successfully registered";
+//					message="You were successfully registered";
 					try {
 						request.getRequestDispatcher("/login.html").forward(request, response);
 					} catch (ServletException e) {
@@ -52,9 +58,9 @@ public class RegisterationServlet extends HttpServlet {
 						e.printStackTrace();
 					}
 				}else{
-					message="You were not successfully registered";
+//					message="You were not successfully registered";
 					try {
-						request.getRequestDispatcher("/registeration.html").forward(request, response);
+						request.getRequestDispatcher("/registration.html").forward(request, response); //하나 새로 만들어서 색변화 하면 좋지 않을까.
 					} catch (ServletException e) {
 						e.printStackTrace();
 					} catch (Exception e) {
@@ -62,9 +68,9 @@ public class RegisterationServlet extends HttpServlet {
 					}
 				}
 		
-		 		request.setAttribute("message", message);	//이거 선언을 해주어야 한다.
-				request.setAttribute("auth", "ok");
-//				
+//		 		request.setAttribute("message", message);	//이거 선언을 해주어야 한다.
+//				request.setAttribute("auth", "ok");
+					
 				
 						
 			} catch (Exception e) {
@@ -74,38 +80,45 @@ public class RegisterationServlet extends HttpServlet {
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 	{	
-		//		
+		doGet(request,response);
 	}
 
-		public boolean insertUserTable(String user_ID, String password) throws Exception
+		public boolean insertUserTable(String user_ID,String Nick_Name,String password) throws Exception
 	{
-		boolean success=false;
-		
-		String database="F:\\workspace\\Pabre\\web.db";
-		try {
+
+			String database="F:\\workspace\\Pabre\\web.db";
 			Class.forName("org.sqlite.JDBC");
-			
 			Connection conn = DriverManager.getConnection("jdbc:sqlite:"
 					+ database);
+		boolean success=false;
+//		if(!(password==passwordCheck)){
+//			success=false;
+//		}else{
+			try {
+			
 			PreparedStatement prepared = conn
-					.prepareStatement("insert into user (user_ID, password) values (?1, ?2);");//?=다이나믹하게 외부에서 정보를 준다.
+					.prepareStatement("insert into user (user_ID,Nick_Name, password) values (?1,?2,?3);");//?=다이나믹하게 외부에서 정보를 준다.
 
 			prepared.setString(1, user_ID); //문자
-			prepared.setString(2, password);
+			prepared.setString(2, Nick_Name);
+			prepared.setString(3, password);
 			prepared.addBatch();
-
 			conn.setAutoCommit(false);
+
 			prepared.executeBatch();
-			
 			prepared.close();
-		    conn.commit();
+			conn.commit();
 		    conn.close();
 		    success=true;  
-		    
+		    return success;
 		} catch(Exception e) {
-			return success;
+			e.printStackTrace();
+		} finally {
+			//언락을 시켜야하
+			
 		}
-		return success;
-	}
+			
+			return success;
 
+	}
 }

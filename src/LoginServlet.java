@@ -55,7 +55,7 @@ public class LoginServlet extends HttpServlet {
 					}
 				} else {
 					try {
-						request.getRequestDispatcher("/login.html").forward(request, response);
+						request.getRequestDispatcher("/registration.html").forward(request, response);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}

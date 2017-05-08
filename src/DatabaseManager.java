@@ -35,6 +35,7 @@ public class DatabaseManager {
 					stmt = conn.createStatement(); //스테이트먼트를 데이터베이스에 보내
 					String sql = "CREATE TABLE " + table //컬럼 5개
 							+ "(user_ID char(100) unique, "
+							+ "Nick_Name char(100) not null,"
 							+ "password char(100) not null);";
 					stmt.executeUpdate(sql); //실행을 하는것 
 					stmt.close();
@@ -59,10 +60,12 @@ public class DatabaseManager {
 			Connection conn = DriverManager.getConnection("jdbc:sqlite:"
 					+ database);
 			PreparedStatement prepared = conn
-					.prepareStatement("insert into user (user_ID, password) values (?1, ?2);");//?=다이나믹하게 외부에서 정보를 준다.
+					.prepareStatement("insert into user (user_ID,Nick_Name, password) values (?1, ?2,?3);");//?=다이나믹하게 외부에서 정보를 준다.
 
 			prepared.setString(1, "sparrow_a1@naver.com"); //문자
-			prepared.setString(2, "123123");
+			prepared.setString(2, "Liver");
+			prepared.setString(3, "123123");
+			
 			prepared.addBatch();
 
 			conn.setAutoCommit(false);
@@ -90,10 +93,11 @@ public class DatabaseManager {
 		      stmt = conn.createStatement();
 		      ResultSet rs = stmt.executeQuery( "select * from " + table + ";" );
 		      while ( rs.next() ) {
-		         String user_id=rs.getString("user_ID");
+		         String user_ID=rs.getString("user_ID");
+		         String Nick_Name=rs.getString("Nick_Name");
 		         String password = rs.getString("password");
 		         
-		         System.out.println("User Id : "+user_id+" password : "+password);
+		         System.out.println("User Id : "+user_ID+"Nick_Name : "+Nick_Name+" password : "+password);
 		      }
 		      
 		      rs.close();
@@ -209,10 +213,10 @@ public class DatabaseManager {
 		DatabaseManager dm = new DatabaseManager();
 		
 //		create table
-//		dm.createUserTable(table);
+		dm.createUserTable(table);
 		
 //		insert data
-//		dm.insertUserTable(table);
+		dm.insertUserTable(table);
 		
 		//retrieve data
 		dm.retrieveUser(table);
