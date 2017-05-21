@@ -27,7 +27,7 @@ public class LoginServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 	{	
-		   String database = "F:\\workspace\\Pabre\\web.db"; 
+		   String database = "F:\\workspace\\Fabre\\web.db"; 
 		   String table = "user";
 		   response.setContentType("text/html");
 		   PrintWriter out;

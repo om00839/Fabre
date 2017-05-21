@@ -16,7 +16,7 @@ public class DatabaseManager {
 	
 	public DatabaseManager()
 	{
-		database = "F:\\workspace\\Pabre\\web.db"; //패스 수정을 해줘야 한다.
+		database = "F:\\workspace\\Fabre\\web.db"; //패스 수정을 해줘야 한다.
 		//database = "web.db" 디폴트 삭제;
 	}
 	
@@ -36,7 +36,8 @@ public class DatabaseManager {
 					String sql = "CREATE TABLE " + table //컬럼 5개
 							+ "(user_ID char(100) unique, "
 							+ "Nick_Name char(100) not null,"
-							+ "password char(100) not null);";
+							+ "password char(100) not null,"
+							+ "passwordCheck char(100) not null);";
 					stmt.executeUpdate(sql); //실행을 하는것 
 					stmt.close();
 					conn.close();
@@ -60,12 +61,12 @@ public class DatabaseManager {
 			Connection conn = DriverManager.getConnection("jdbc:sqlite:"
 					+ database);
 			PreparedStatement prepared = conn
-					.prepareStatement("insert into user (user_ID,Nick_Name, password) values (?1, ?2,?3);");//?=다이나믹하게 외부에서 정보를 준다.
+					.prepareStatement("insert into user (user_ID,Nick_Name, password,passwordCheck) values (?1, ?2,?3,?4);");//?=다이나믹하게 외부에서 정보를 준다.
 
 			prepared.setString(1, "sparrow_a1@naver.com"); //문자
 			prepared.setString(2, "Liver");
 			prepared.setString(3, "123123");
-			
+			prepared.setString(4, "123123");
 			prepared.addBatch();
 
 			conn.setAutoCommit(false);
@@ -96,8 +97,8 @@ public class DatabaseManager {
 		         String user_ID=rs.getString("user_ID");
 		         String Nick_Name=rs.getString("Nick_Name");
 		         String password = rs.getString("password");
-		         
-		         System.out.println("User Id : "+user_ID+"Nick_Name : "+Nick_Name+" password : "+password);
+		         String passwordCheck = rs.getString("passwordCheck");
+		         System.out.println("User Id : "+user_ID+"Nick_Name : "+Nick_Name+" password : "+password+"passwordCheck : "+passwordCheck);
 		      }
 		      
 		      rs.close();
@@ -213,10 +214,10 @@ public class DatabaseManager {
 		DatabaseManager dm = new DatabaseManager();
 		
 //		create table
-		dm.createUserTable(table);
+//		dm.createUserTable(table);
 		
 //		insert data
-		dm.insertUserTable(table);
+//		dm.insertUserTable(table);
 		
 		//retrieve data
 		dm.retrieveUser(table);
