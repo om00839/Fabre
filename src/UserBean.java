@@ -1,22 +1,33 @@
 
 
+
 public class UserBean {
 	
-	private String user_ID;
-	private String password;
+	private String u_email;
+	private String u_password;
+	private String u_nickname;
 	
-	public void setUser_ID(String user_ID){
-		this.user_ID = user_ID;
+	public void setU_email(String u_emai){
+		this.u_email = u_emai;
 	}
 	
-	public void setPassword(String password){
-		this.password = password;
+	public void setU_password(String u_password){
+		this.u_password = u_password;
 	}
 	
-	public String getUser_ID(){
-		return user_ID;
+	public void setU_nickname(String u_nickname){
+		this.u_nickname = u_nickname;
 	}
-	public String getPassword(){
-		return password;
+	
+	public String getU_email(){
+		return u_email;
+	}
+	
+	public String getU_password(){
+		return u_password;
+	}
+	
+	public String getU_nickname(){
+		return u_nickname;
 	}
 }

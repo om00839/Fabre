@@ -15,10 +15,6 @@ div {
   font-size: 15px;
 }
 
-.container {
-  width: 982px;
-  margin: 0 auto;
-}
 
 
 header {
@@ -61,6 +57,7 @@ header {
   border : 1px solid rgb(217, 217, 217);
   padding : 5px;
   border-radius: 3px;
+  display: none;
   width: 100px;
 }
 
@@ -70,13 +67,21 @@ header {
 }
 
 
+.container {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  padding: 12px ;
+}
+
+
 nav {
   float: left;
   width: 241.5px;
   height: 1024px;
   background-color: rgb(255, 255, 255);
   border: 0.5px solid rgb(217, 217, 217);
-  margin: 12px 5px 12px 0;
+  /*margin: 12px 5px 12px 0;*/
 }
 
 .nav-list-header {
@@ -132,8 +137,7 @@ article {
   border: 0.5px solid rgb(217, 217, 217);
   float: left;
   background-color: rgb(255, 255, 255);
-  height: 1024px;
-  margin: 12px 0 ;
+  min-height: 1024px;
 }
 
 .article-header {
@@ -195,11 +199,9 @@ article {
 }
 
 footer {
-  clear: both;
-  min-height: 70px;
-  background: rgb(255, 255, 255);
-  border-top: 1px solid rgb(217, 217, 217);
-  border-bottom: 2px solid rgb(255, 87, 83);
+  width: 10%;
+  min-height: 1024px;
+  float: right;
   text-align: left;
   font-size: 12px;
   padding: 10px 20px;
