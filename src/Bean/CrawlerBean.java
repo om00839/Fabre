@@ -1,3 +1,4 @@
+package src.Bean;
 
 
 public class CrawlerBean {
