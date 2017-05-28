@@ -19,18 +19,17 @@ div {
 
 header {
   background-color: rgb(255, 255, 255);
-  border-top: 2px solid rgb(255, 87, 83);
   text-align: left;
+  border-top: 2px solid rgb(255, 87, 83);
   box-shadow: 0 2px 2px rgb(186, 186, 186);
-  min-height: 100px;
+  height: 100px;
 }
 
 .header-logo {
-  width: 200px;
-  font-size: 40px;
-  vertical-align: baseline;
-  float: left;
-  margin: 25px 12px;
+  display: inline;
+  position: relative;
+  top: 20px;
+  left: 30px;
 }
 
 .header-menunav {
@@ -40,7 +39,6 @@ header {
   font-size: 18px;
   width: 120px;
   float: right;
-  margin-right: 20px;
 }
 
 .header-menunav>span{
@@ -51,14 +49,12 @@ header {
   position: relative;
   top: -15px;
   list-style: none;
-  text-decoration: none;
-  font-style: normal;
   background-color: rgba(255, 255, 255, 0.5);
   border : 1px solid rgb(217, 217, 217);
   padding : 5px;
   border-radius: 3px;
-  display: none;
   width: 100px;
+  display: none;
 }
 
 .header-menunav-slidemenu a{
@@ -68,128 +64,127 @@ header {
 
 
 .container {
-  width: 100%;
+  width: 980px;
   height: auto;
   margin: 0 auto;
-  padding: 12px ;
 }
 
 
 nav {
+
   float: left;
-  width: 241.5px;
-  height: 1024px;
+  width: 242px;
+  box-sizing: border-box;
+  min-height: auto;
+  max-height: 1024px;
+
   background-color: rgb(255, 255, 255);
-  border: 0.5px solid rgb(217, 217, 217);
-  /*margin: 12px 5px 12px 0;*/
+  border: 1px solid rgb(217, 217, 217);
+  margin: 12px 0;
 }
 
-.nav-list-header {
-  min-height: 50px;
+.nav-header {
+
+  height: 50px;
+  box-sizing: border-box;
+
   background-color: rgb(255, 87, 83);
-  border-bottom: 0.5px solid rgb(217, 217, 217);
-  text-align: center;
-}
+  border-bottom: 1px solid rgb(217, 217, 217);
+  padding: 12px 0;
 
-.nav-list-header span{
-  position: relative;
-  top: 12px;
+  text-align: center;
   font-size: 18px;
   font-weight: bolder;
 }
 
 
-.nav-list-main ul {
+.nav-list {
   list-style: none;
-  text-align: left;
-  margin: 0 auto;
-  padding-left: 0;
 }
 
-.nav-list-main li {
-  margin: 12px auto;
-  width: 200px;
+.nav-list li {
+  display: block;
+  width: 90%;
   list-style-position: outside;
 }
 
-.nav-list-main li span{
-  position: relative;
-  top: 6px;
-  display: inline-block;
-  width: 145px;
-  margin : 5px;
+.nav-list li a{
+
+  display: block;
+  text-decoration: none;
+  color: rgb(51,51,51);
+  font-size: 15px;
+
   text-align: left;
-  border-bottom: 0.5px solid rgb(217, 217, 217);
+  border-bottom: 1px solid rgb(217, 217, 217);
   overflow: hidden;
   white-space: nowrap;
   -webkit-line-clamp: 1;
+
+  margin-bottom: 12px;
+
 }
 
-.nav-list-footer {
-  background-color: rgb(255, 87, 83);
-  border-top: 0.5px solid rgb(217, 217, 217);
-  position: relative;
-  bottom: 0;
-}
 
 article {
-  width: 731.5px;
-  border: 0.5px solid rgb(217, 217, 217);
-  float: left;
+
+  float: right;
+
+  width: 732px;
+  min-height: auto;
+  max-height: 1024px;
+  box-sizing: border-box;
+
+  border: 1px solid rgb(217, 217, 217);
   background-color: rgb(255, 255, 255);
-  min-height: 1024px;
+  margin :12px 0 12px 6px;
 }
 
 .article-header {
-  min-width: 731.5px;
-  border-bottom: 0.5px solid rgb(217, 217, 217);
-  min-height: 50px;
+
+  height: 50px;
+  box-sizing: border-box;
   background-color: rgb(255, 87, 83);
+  border-bottom: 1px solid rgb(217, 217, 217);
+  margin-bottom: 7px;
 }
 
-.article-header img {
+.article-notice img {
   display: inline;
   position: relative;
   left: 5px;
 }
 
-.article-main {
-  min-width: 731.5px;
-  margin: 0 auto;
-}
+.article-notice {
+  width: 710px;
+  box-sizing: border-box;
+  margin : 0 auto 12px auto;
 
-.article-main-notice {
-  margin: 12px;
   padding: 6px 12px;
-  border: 0.5px solid rgb(217, 217, 217);
+  border: 1px solid rgb(217, 217, 217);
   border-radius: 3px;
   box-shadow: 2px 2px 2px rgb(135, 135, 135);
 }
 
-.article-main-notice-header {
-  min-height: 15px;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-  border-bottom: 0.5px solid rgb(217, 217, 217);
-  background-color: rgb(255, 87, 83);
-}
+.article-content {
+  width: 710px;
+  box-sizing: border-box;
+  margin : 0 auto 12px auto;
 
-.article-main-content {
-  margin: 12px;
+
   padding: 6px 12px;
-  border: 0.5px solid rgb(217, 217, 217);
+  border: 1px solid rgb(217, 217, 217);
   border-radius: 3px;
   box-shadow: 2px 2px 2px rgb(135, 135, 135);
 }
 
-.article-main-content-urlbox {
-  margin: 3px;
+.article-content-urlbox {
   padding: 3px 10px;
   min-height: 25px;
   border: 1px solid rgb(217, 217, 217);
 }
 
-.article-main-content-urlbox a {
+.article-content-urlbox a {
   max-height: 20px;
   overflow: hidden;
   white-space: nowrap;
@@ -199,12 +194,14 @@ article {
 }
 
 footer {
-  width: 10%;
-  min-height: 1024px;
-  float: right;
+  clear: both;
   text-align: left;
   font-size: 12px;
   padding: 10px 20px;
+  background-color: rgb(255, 255, 255);
+  border-top: 2px solid rgb(255, 87, 83);
+  box-shadow: 0 2px 2px rgb(186, 186, 186);
+
 }
 
 

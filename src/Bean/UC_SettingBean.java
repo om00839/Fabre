@@ -6,10 +6,10 @@ public class UC_SettingBean {
 	private String u_email;
 	private int c_id;
 	private boolean uc_favorite;
-	private String uc_keywords;
+	private String[] uc_keywords;
 	// uc_keywords는 comma separated 형식으로 저장 할 예정
 	
-	UC_SettingBean(){	
+	public UC_SettingBean(){	
 		
 		UserBean ub = new UserBean();
 		this.u_email = ub.getU_email();
@@ -24,7 +24,7 @@ public class UC_SettingBean {
 	}
 	
 	public void setUC_keywords(String uc_keywords){
-		this.uc_keywords = uc_keywords;
+		this.uc_keywords = uc_keywords.split(",");
 	}
 	
 	public String getU_email(){
@@ -39,7 +39,7 @@ public class UC_SettingBean {
 		return uc_favorite;
 	}
 	
-	public String getUC_keywords(){
+	public String[] getUC_keywords(){
 		return uc_keywords;
 	}
 	

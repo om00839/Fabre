@@ -17,7 +17,7 @@ public class DatabaseManager {
 	
 	public DatabaseManager()
 	{
-		database = "F:\\workspace\\Fabre\\web.db"; //패스 수정을 해줘야 한다.
+		database = "C:\\workspace\\Fabre\\web.db"; //패스 수정을 해줘야 한다.
 		//database = "web.db" 디폴트 삭제;
 	}
 	

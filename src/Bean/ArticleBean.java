@@ -9,7 +9,7 @@ public class ArticleBean {
 	private String a_title;
 	private String a_date;
 	
-	ArticleBean(){
+	public ArticleBean(){
 		CrawlerBean cb = new CrawlerBean();
 		this.c_id = cb.getC_id();
 	}
