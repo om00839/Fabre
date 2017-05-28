@@ -1,4 +1,4 @@
-package src.Servlet;
+
 
 
 
@@ -33,20 +33,20 @@ public class RegistrationServlet extends HttpServlet {
 	String email="^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$";
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 	{	
-		   String database = "F:\\workspace\\Fabre\\web.db";
+		   String database = "D:\\workspace\\Fabre\\web.db";
 		   String table = "user";
 		   response.setContentType("text/html");
 		   PrintWriter out;
 		   try {
 //				
-				String user_ID = request.getParameter("user_ID");
-				String Nick_Name=request.getParameter("Nick_Name");
-				String password=request.getParameter("password");
-				String passwordCheck=request.getParameter("passwordCheck");
+				String u_email = request.getParameter("u_email");
+				String u_nickname=request.getParameter("u_nickname");
+				String u_password=request.getParameter("u_password");
+				String u_passwordCheck=request.getParameter("u_passwordCheck");
 				
 				//call insertUserTable function
 				//user_ID,password,Nick_Name, passwordCheck, age)
-				boolean success= insertUserTable(user_ID,Nick_Name, password, passwordCheck);
+				boolean success= insertUserTable(u_email,u_nickname, u_password, u_passwordCheck);
 				String message= "";
 				
 				if(success){
@@ -85,11 +85,11 @@ public class RegistrationServlet extends HttpServlet {
 		doGet(request,response);
 	}
 
-		public boolean insertUserTable(String user_ID,String Nick_Name,String password,String passwordCheck) throws Exception
+		public boolean insertUserTable(String u_email,String u_nickname, String u_password,String u_passwordCheck) throws Exception
 	{
-			
+			final Lock lock = new ReentrantLock();
 
-			String database="F:\\workspace\\Fabre\\web.db";
+			String database="D:\\workspace\\Fabre\\web.db";
 			Class.forName("org.sqlite.JDBC");
 			Connection conn = DriverManager.getConnection("jdbc:sqlite:"
 					+ database);
@@ -98,19 +98,19 @@ public class RegistrationServlet extends HttpServlet {
 //			success=false;
 //		}else{
 //		
-		if((user_ID.matches(email))){
+		if((u_email.matches(email))){
 //			if(!(password==passwordCheck)){
 //				return success;}
-			if(password.equals(passwordCheck)){
-				try {
 			
-
+			if(u_password.equals(u_passwordCheck)){
+				try {
+					
 			PreparedStatement prepared = conn
-					.prepareStatement("insert into user (user_ID,Nick_Name, password, passwordCheck) values (?1,?2,?3,?4);");//?=다이나믹하게 외부에서 정보를 준다.
-			prepared.setString(1, user_ID); //문자
-			prepared.setString(2, Nick_Name);
-			prepared.setString(3, password);
-			prepared.setString(4, passwordCheck);
+					.prepareStatement("insert into user (u_email, u_nickname, u_password) values (?1,?2,?3);");//?=다이나믹하게 외부에서 정보를 준다.
+			prepared.setString(1, u_email); //문자
+			prepared.setString(2, u_nickname);
+			prepared.setString(3, u_password);
+//			prepared.setString(4, passwordCheck);
 			
 			prepared.addBatch();
 			conn.setAutoCommit(false);
@@ -118,14 +118,15 @@ public class RegistrationServlet extends HttpServlet {
 			prepared.executeBatch();
 			prepared.close();
 			conn.commit();
-//		    conn.close();
+		    conn.close();
+			
 		    success=true;  
 		    return success;
 		} catch(Exception e) {
 			e.printStackTrace();
 			conn.rollback();
-//			conn.close();
 		} 
+				conn.rollback();
 	}
 		else{
 			return success;
