@@ -6,131 +6,25 @@
 
 <web-app>
   <display-name>Knowledge Extraction</display-name> 
- 
-<servlet>
-	<servlet-name>MyBioServlet</servlet-name>
-    <servlet-class>MyBioServlet</servlet-class>
-</servlet>
-<servlet-mapping>
-        <servlet-name>MyBioServlet</servlet-name>
-        <url-pattern>/MyBioServlet</url-pattern>
-</servlet-mapping>   
-<servlet>
-	<servlet-name>RegistrationServlet</servlet-name>
-    <servlet-class>RegistrationServlet</servlet-class>
-</servlet>
-<servlet-mapping>
-        <servlet-name>RegistrationServlet</servlet-name>
-        <url-pattern>/RegistrationServlet</url-pattern>
-</servlet-mapping>
-<servlet>
-	<servlet-name>NaverSearchServlet</servlet-name>
-    <servlet-class>NaverSearchServlet</servlet-class>
-</servlet>
-<servlet-mapping>
-        <servlet-name>NaverSearchServlet</servlet-name>
-        <url-pattern>/NaverSearchServlet</url-pattern>
-</servlet-mapping>   
-
-
-<servlet>
-	<servlet-name>VisualizationServlet</servlet-name>
-    <servlet-class>VisualizationServlet</servlet-class>
-</servlet>
-<servlet-mapping>
-        <servlet-name>VisualizationServlet</servlet-name>
-        <url-pattern>/VisualizationServlet</url-pattern>
-</servlet-mapping>  
-
-<servlet>
-	<servlet-name>VisualizationTMServlet</servlet-name>
-    <servlet-class>VisualizationTMServlet</servlet-class>
-</servlet>
-<servlet-mapping>
-        <servlet-name>VisualizationTMServlet</servlet-name>
-        <url-pattern>/VisualizationTMServlet</url-pattern>
-</servlet-mapping> 
-
-<servlet>
-	<servlet-name>FormProcessingServlet</servlet-name>
-    <servlet-class>FormProcessingServlet</servlet-class>
-</servlet>
-<servlet-mapping>
-        <servlet-name>FormProcessingServlet</servlet-name>
-        <url-pattern>/FormProcessingServlet</url-pattern>
-</servlet-mapping>
-
-<servlet> 
-	<servlet-name>FirstCupServlet</servlet-name>
-    <servlet-class>FirstCupServlet</servlet-class>
-</servlet>
-<servlet-mapping>
-        <servlet-name>FirstCupServlet</servlet-name>
-        <url-pattern>/FirstCupServlet</url-pattern>
-</servlet-mapping> 
-
-<servlet>
-	<servlet-name>SecondCupServlet</servlet-name>
-    <servlet-class>SecondCupServlet</servlet-class>
-</servlet>
-<servlet-mapping>
-        <servlet-name>SecondCupServlet</servlet-name>
-        <url-pattern>/SecondCupServlet</url-pattern>
-</servlet-mapping> 
-
-<servlet>
-	<servlet-name>MetaMapServlet</servlet-name>
-    <servlet-class>MetaMapServlet</servlet-class>
-</servlet>
-<servlet-mapping>
-        <servlet-name>MetaMapServlet</servlet-name>
-        <url-pattern>/MetaMapServlet</url-pattern>
-</servlet-mapping> 
-
-<servlet>
-	<servlet-name>UserServlet</servlet-name>
-    <servlet-class>UserServlet</servlet-class>
-</servlet>
-<servlet-mapping>
-        <servlet-name>UserServlet</servlet-name>
-        <url-pattern>/UserServlet</url-pattern>
-</servlet-mapping> 
 
 <servlet>
 	<servlet-name>LoginServlet</servlet-name>
-    <servlet-class>LoginServlet</servlet-class>
+	<servlet-class>LoginServlet</servlet-class>
 </servlet>
 <servlet-mapping>
-        <servlet-name>LoginServlet</servlet-name>
-        <url-pattern>/LoginServlet</url-pattern>
-</servlet-mapping> 
-
-<servlet>
-	<servlet-name>LogoutServlet</servlet-name>
-    <servlet-class>LogoutServlet</servlet-class>
-</servlet>
-<servlet-mapping>
-        <servlet-name>LogoutServlet</servlet-name>
-        <url-pattern>/LogoutServlet</url-pattern>
-</servlet-mapping> 
-
-<servlet>
-	<servlet-name>SearchServlet</servlet-name>
-    <servlet-class>SearchServlet</servlet-class>
-</servlet>
-<servlet-mapping>
-        <servlet-name>SearchServlet</servlet-name>
-        <url-pattern>/SearchServlet</url-pattern>
+	<servlet-name>LoginServlet</servlet-name>
+	<url-pattern>/LoginServlet</url-pattern>
 </servlet-mapping>   
 
 <servlet>
-	<servlet-name>YTexServlet</servlet-name>
-    <servlet-class>YTexServlet</servlet-class>
+	<servlet-name>RegistrationServlet</servlet-name>
+	<servlet-class>RegistrationServlet</servlet-class>
 </servlet>
 <servlet-mapping>
-        <servlet-name>YTexServlet</servlet-name>
-        <url-pattern>/YTexServlet</url-pattern>
+	<servlet-name>RegistrationServlet</servlet-name>
+	<url-pattern>/RegistrationServlet</url-pattern>
 </servlet-mapping>   
+
 
  <!-- Tell the server to use form-based authentication. -->
 <login-config>
@@ -166,8 +60,7 @@
   </context-param>
  
   <welcome-file-list id="WelcomeFileList_1">
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>login.html</welcome-file>
   </welcome-file-list>
 
 </web-app>
