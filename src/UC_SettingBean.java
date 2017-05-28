@@ -1,4 +1,4 @@
-package src.Bean;
+
 
 
 public class UC_SettingBean {
