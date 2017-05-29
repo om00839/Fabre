@@ -30,10 +30,10 @@ public class LoginServlet extends HttpServlet {
 
 	
 
-	public void doGet(HttpServletRequest request, HttpServletResponse response) {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-		response.setContentType("text/html");
-		PrintWriter out;
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
 		DatabaseManager dm = null;
 		
 		UserBean user = new UserBean();
@@ -42,15 +42,20 @@ public class LoginServlet extends HttpServlet {
 		
 		
 		try {
+			
 			dm = new DatabaseManager();
+			
 			String u_email = request.getParameter("u_email");// 이거 조심
 			String u_password = request.getParameter("u_password");
 			
 			user = dm.retrieveUser(u_email, u_password);
-			cList = dm.retrieveCrawler(user);
-			aList = dm.retrieveArticle(user);
-
-			if (!user.equals(null)) {
+			
+			String msg ="";
+			
+			if (user!=null) {
+				
+				cList = dm.retrieveCrawler(user);
+				aList = dm.retrieveArticle(user);
 
 				request.setAttribute("user", user);
 				request.setAttribute("cList", cList);
@@ -68,12 +73,14 @@ public class LoginServlet extends HttpServlet {
 				}
 			} else {
 				try {
+					msg = "로그인에 실패하셨습니다.";
 					request.getRequestDispatcher("/login.html").forward(request, response);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 			
+			out.write(msg);
 			dm.close();
 
 		} catch (Exception e) {
@@ -81,7 +88,7 @@ public class LoginServlet extends HttpServlet {
 
 	}
 
-	public void doPost(HttpServletRequest request, HttpServletResponse response) {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		doGet(request, response);
 	}
 

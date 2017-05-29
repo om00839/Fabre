@@ -1,84 +1,77 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title>Fabre - RegistrationPage</title>
     <link rel="stylesheet" href="./css/default.css">
-  </head>
-  <body>
+    <script type="text/javascript">
+    // function formValidation() {
+    //     var u_email = document.registration.u_email;
+    //     var u_password = document.registration.u_password;
+    //     var u_passwordCheck = document.registration.u_passwordCheck;
+    //     var u_nickname = document.registration.u_nickname;
+
+    //     if (u_email == ""){
+
+    //       document.getElementById("checkEmail")
+
+    //     }
+    //     return false;
+    // }
+    </script>
+</head>
+
+<body>
     <div class="wrapper">
-
-      <header>
-        <!--헤더 왼쪽 로고-->
-
-        <div class="header-logo">
-          <img src="./images/logo.png" alt="logo" style="height:50px; width:auto;">
+        <header>
+            <!--헤더 왼쪽 로고-->
+            <div class="header-logo">
+                <img src="./images/logo.png" alt="logo" style="height:60px; width:auto;">
+            </div>
+        </header>
+        <div class="container">
+            <nav>
+                <div class="nav-header">회원가입</div>
+                <ul class="nav-list">
+                    <li class="nav-list-thisPage">기본정보입력</li>
+                    <li>크롤러 추가</li>
+                </ul>
+            </nav>
+            <article id="first-registration">
+                <div class="article-header"> </div>
+                <div class="article-main">
+                    <form name = "registration" class="registration-main" action="RegistrationServlet" method="post" onsubmit="return formValidation();">
+                        <div class="registration-main-email">
+                            <span>이메일</span>
+                            <input type="text" placeholder="이메일" name="u_email">
+                        </div>
+                        <p id="checkEmail">이메일을 입력해주세요 / 중복확인 메세지</p>
+                        <div class="registration-main-nickname">
+                            <span>닉네임</span>
+                            <input type="text" placeholder="닉네임" name="u_nickname">
+                        </div>
+                        <div class="registration-main-password">
+                            <span>비밀번호</span>
+                            <input type="password" placeholder="비밀번호" name="u_password">
+                        </div>
+                        <p>비밀번호를 입력해주세요 / ok/error</p>
+                        <div class="registration-main-pwcheck">
+                            <span>비밀번호확인</span>
+                            <input type="password" placeholder="비밀번호확인" name="u_passwordCheck">
+                        </div>
+                        <p id="checkPassword"> 비밀번호를 다시 입력해주세요 / ok / error</p>
+                        <button type="submit" name="registration">제출</button>
+                    </form>
+                </div>
+            </article>
         </div>
-
-      </header>
-
-      <div class="container">
-
-        <nav>
-          <div class="nav-list-header">
-
-          </div>
-          <div class="nav-list-main">
-            <ul class="registration-nav-list">
-              <li><span class="nav-list-thisPage">기본정보입력</span></li>
-              <li><span>튜토리얼</span></li>
-              <li><span>크롤러 추가</span></li>
-            </ul>
-
-          </div>
-
-        </nav>
-
-        <article id="first-registration">
-          <div class="article-header">
-
-          </div>
-          <div class="article-main">
-
-            <form class="registration-main" action="RegistrationServlet" method="post">
-              <div class="registration-main-nickname">
-                <span>닉네임</span>
-                <input type="text" placeholder="닉네임" name="u_nickname">
-              </div>
-              <div class="registration-main-email">
-                <span>이메일</span>
-                <input type="text" placeholder="이메일"  name="u_email">
-              </div>
-              <p>이메일을 입력해주세요 / 중복확인 메세지</p>
-              <div class="registration-main-password">
-                <span>비밀번호</span>
-                <input type="password" placeholder="비밀번호" name="u_password">
-              </div>
-              <p>비밀번호를 입력해주세요 / ok/error</p>
-              <div class="registration-main-pwcheck">
-                <span>비밀번호확인</span>
-                <input type="password" placeholder="비밀번호확인" name="u_passwordCheck">
-              </div>
-              <p>비밀번호를 다시 입력해주세요 / ok/error</p>
-              <button type="submit" name="registration">제출</button>
-
-            </form>
-
-          </div>
-
-        </article>
-
-
-      </div>
-
-
-      <footer>
-        <p>
-          Fabre 웹시스템 개발 프로젝트
-        </p>
-      </footer>
-
+        <footer>
+            <p>
+                Fabre 웹시스템 개발 프로젝트
+            </p>
+        </footer>
     </div>
+</body>
 
-  </body>
 </html>

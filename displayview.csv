@@ -1,0 +1,14 @@
+CREATE VIEW display 
+AS 
+SELECT
+ u_email,
+ c_id,
+ c_url AS crawler,
+ c_name AS crawler,
+ a_id AS article,
+ a_title AS article,
+ a_date AS article 
+FROM
+UC_Setting
+INNER JOIN crawler ON crawler.c_id = UC_Setting.c_id
+INNER JOIN article ON article.c_id = UC_Setting.c_id;

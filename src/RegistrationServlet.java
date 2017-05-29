@@ -1,5 +1,4 @@
 
-
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,11 +25,12 @@ import Fabre.Bean.UserBean;
 
 public class RegistrationServlet extends HttpServlet {
 
-	public void doGet(HttpServletRequest request, HttpServletResponse response) {
+	public void doGet(HttpServletRequest request, HttpServletResponse response){
 
-		response.setContentType("text/html");
+		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out;
 		try {
+			
 
 			//
 			String u_email = request.getParameter("u_email");
@@ -46,53 +46,68 @@ public class RegistrationServlet extends HttpServlet {
 			// call insertUserTable function
 			// user_ID,password,Nick_Name, passwordCheck, age)
 			boolean success = checkEmail(u_email) && checkPassword(u_password, u_passwordCheck);
+			
+			DatabaseManager dm = null;
 
 			if (success) {
 
 				try {
 
-					DatabaseManager dm = new DatabaseManager();
-					dm.insertUser(user);
-					dm.close();
+					dm = new DatabaseManager();
 
-					request.setAttribute("auth", "ok");
-					request.getRequestDispatcher("/main.jsp").forward(request, response);
+					if (dm.retrieveUser(u_email)) {
+
+						dm.insertUser(user);
+						request.getRequestDispatcher("/login.html").forward(request, response);
+
+					}else{
+						System.out.println("email 중복");
+					}
+
+				} catch (ServletException e) {
+					e.printStackTrace();
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally{
+
+					dm.close();
 					
+				}
+				
+			} else {
+
+				try {
+
+					request.getRequestDispatcher("/registration.html").forward(request, response);
 
 				} catch (ServletException e) {
 					e.printStackTrace();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			} else {
-
-				try {
-
-					request.getRequestDispatcher("/registration.html").forward(request, response); 
-
-				} catch (ServletException e) {
-					e.printStackTrace();
-				} catch (Exception e) {
-					e.printStackTrace();
-				} 
 			}
 
 		} catch (Exception e) {
+
 			e.printStackTrace();
+
 		}
 	}
 
-	public void doPost(HttpServletRequest request, HttpServletResponse response) {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
 
-	public boolean checkEmail(String u_email) {
+	public boolean checkEmail(String u_email) throws SQLException, ClassNotFoundException {
 
 		boolean success = false;
+
 		String emailRegex = "^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$";
 
 		if (u_email.matches(emailRegex)) {
+
 			success = true;
+
 		}
 
 		return success;

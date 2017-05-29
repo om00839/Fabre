@@ -1,324 +1,351 @@
 @font-face {
-  font-family: irb_web;
-  src : url("../fonts/IropkeBatangM_web/IropkeBatangM.woff") format('woff'),
-  url("../fonts/IropkeBatangM_web/IropkeBatangM.eot") format('eot');
+    font-family: irb_web;
+    src: url("../fonts/IropkeBatangM_web/IropkeBatangM.woff") format('woff'), url("../fonts/IropkeBatangM_web/IropkeBatangM.eot") format('eot');
 }
 
 div {
-  display: block;
+    display: block;
 }
 
 .wrapper {
-  background-color: rgb(242, 242, 242);
-  color: rgb(51, 51, 51);
-  font-family: irb_web;
-  font-size: 15px;
+    background-color: rgb(242, 242, 242);
+    color: rgb(51, 51, 51);
+    font-family: irb_web;
+    font-size: 15px;
 }
 
-
-
 header {
-  background-color: rgb(255, 255, 255);
-  text-align: left;
-  border-top: 2px solid rgb(255, 87, 83);
-  box-shadow: 0 2px 2px rgb(186, 186, 186);
-  height: 100px;
+    background-color: rgb(255, 255, 255);
+    text-align: left;
+    border-top: 2px solid rgb(255, 87, 83);
+    box-shadow: 0 2px 2px rgb(186, 186, 186);
+    height: 100px;
 }
 
 .header-logo {
-  display: inline;
-  position: relative;
-  top: 20px;
-  left: 30px;
+    display: inline;
+    position: relative;
+    top: 20px;
+    left: 30px;
 }
 
 .header-menunav {
-  position: relative;
-  padding: 3px;
-  margin: 12px 20px;
-  font-size: 18px;
-  width: 120px;
-  float: right;
+
+    display: block;
+    position: relative;
+    margin: 12px 20px;
+    font-size: 18px;
+    width: 150px;
+    float: right;
+    font-weight: bold;
+    cursor: pointer;
 }
 
-.header-menunav>span{
-  border-bottom: 1px solid rgb(217, 217, 217);
+.header-menunav span {
+
+    display: block;
+    border-bottom: 1px solid rgb(217, 217, 217);
+    margin: 0 auto;
 }
 
-.header-menunav-slidemenu{
-  position: relative;
-  top: -15px;
-  list-style: none;
-  background-color: rgba(255, 255, 255, 0.5);
-  border : 1px solid rgb(217, 217, 217);
-  padding : 5px;
-  border-radius: 3px;
-  width: 100px;
-  display: none;
+.header-menunav span img{
+
 }
 
-.header-menunav-slidemenu a{
-  text-decoration: none;
-  color: rgb(51, 51, 51);
+.header-menunav-slidemenu {
+
+    display: block;
+    position: relative;
+
+    top: -15px;
+    right: 40px;
+    list-style: none;
+    width: 150px;
+    display: none;
 }
 
+.header-menunav-slidemenu a {
+
+    display: block;
+    padding: 5px;
+    text-decoration: none;
+    color: rgb(51, 51, 51);
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgb(217, 217, 217);
+    border-radius: 3px;
+}
+
+.header-menunav-slidemenu a:hover{
+
+    color: rgb(255, 87, 83)
+
+}
 
 .container {
-  width: 980px;
-  height: auto;
-  margin: 0 auto;
+    display: block;
+    width: 980px;
+    height: auto;
+    margin: 0 auto;
 }
-
 
 nav {
 
-  float: left;
-  width: 242px;
-  box-sizing: border-box;
-  min-height: auto;
-  max-height: 1024px;
-
-  background-color: rgb(255, 255, 255);
-  border: 1px solid rgb(217, 217, 217);
-  margin: 12px 0;
+    display: block;
+    float: left;
+    width: 242px;
+    box-sizing: border-box;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(217, 217, 217);
+    margin: 12px 0;
 }
 
 .nav-header {
-
-  height: 50px;
-  box-sizing: border-box;
-
-  background-color: rgb(255, 87, 83);
-  border-bottom: 1px solid rgb(217, 217, 217);
-  padding: 12px 0;
-
-  text-align: center;
-  font-size: 18px;
-  font-weight: bolder;
+    height: 50px;
+    box-sizing: border-box;
+    background-color: rgb(255, 87, 83);
+    border-bottom: 1px solid rgb(217, 217, 217);
+    padding: 12px 0;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bolder;
 }
 
-
 .nav-list {
-  list-style: none;
+    display: block;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .nav-list li {
-  display: block;
-  width: 90%;
-  list-style-position: outside;
+    display: block;
+    width: 75%;
+    list-style-position: outside;
+    font-size: 15px;
+    text-align: left;
+    border-bottom: 1px solid rgb(217, 217, 217);
+    margin: 12px auto;
+    color: rgb(51, 51, 51);
+    font-weight: 600;
+    padding: 3px 5px;
 }
 
-.nav-list li a{
+.nav-list li a {
 
-  display: block;
-  text-decoration: none;
-  color: rgb(51,51,51);
-  font-size: 15px;
-
-  text-align: left;
-  border-bottom: 1px solid rgb(217, 217, 217);
-  overflow: hidden;
-  white-space: nowrap;
-  -webkit-line-clamp: 1;
-
-  margin-bottom: 12px;
-
+    display: block;
+    text-decoration: none;
+    overflow: hidden;
+    white-space: nowrap;
+    -webkit-line-clamp: 1;
+    color: rgb(51, 51, 51);
 }
-
 
 article {
-
-  float: right;
-
-  width: 732px;
-  min-height: auto;
-  max-height: 1024px;
-  box-sizing: border-box;
-
-  border: 1px solid rgb(217, 217, 217);
-  background-color: rgb(255, 255, 255);
-  margin :12px 0 12px 6px;
+    float: right;
+    width: 732px;
+    min-height: 550px;
+    box-sizing: border-box;
+    border: 1px solid rgb(217, 217, 217);
+    background-color: rgb(255, 255, 255);
+    margin: 12px 0 12px 6px;
 }
 
 .article-header {
-
-  height: 50px;
-  box-sizing: border-box;
-  background-color: rgb(255, 87, 83);
-  border-bottom: 1px solid rgb(217, 217, 217);
-  margin-bottom: 7px;
+    height: 50px;
+    box-sizing: border-box;
+    background-color: rgb(255, 87, 83);
+    border-bottom: 1px solid rgb(217, 217, 217);
+    margin-bottom: 7px;
 }
 
 .article-notice img {
-  display: inline;
-  position: relative;
-  left: 5px;
+    display: inline;
+    position: relative;
+    left: 5px;
 }
 
 .article-notice {
-  width: 710px;
-  box-sizing: border-box;
-  margin : 0 auto 12px auto;
-
-  padding: 6px 12px;
-  border: 1px solid rgb(217, 217, 217);
-  border-radius: 3px;
-  box-shadow: 2px 2px 2px rgb(135, 135, 135);
+    width: 710px;
+    box-sizing: border-box;
+    margin: 0 auto 12px auto;
+    padding: 6px 12px;
+    border: 1px solid rgb(217, 217, 217);
+    border-radius: 3px;
+    box-shadow: 2px 2px 2px rgb(135, 135, 135);
 }
 
 .article-content {
-  width: 710px;
-  box-sizing: border-box;
-  margin : 0 auto 12px auto;
-
-
-  padding: 6px 12px;
-  border: 1px solid rgb(217, 217, 217);
-  border-radius: 3px;
-  box-shadow: 2px 2px 2px rgb(135, 135, 135);
+    width: 710px;
+    box-sizing: border-box;
+    margin: 0 auto 12px auto;
+    padding: 6px 12px;
+    border: 1px solid rgb(217, 217, 217);
+    border-radius: 3px;
+    box-shadow: 2px 2px 2px rgb(135, 135, 135);
 }
 
 .article-content-urlbox {
-  padding: 3px 10px;
-  min-height: 25px;
-  border: 1px solid rgb(217, 217, 217);
+    padding: 3px 10px;
+    min-height: 25px;
+    border: 1px solid rgb(217, 217, 217);
 }
 
 .article-content-urlbox a {
-  max-height: 20px;
-  overflow: hidden;
-  white-space: nowrap;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: orient;
-  display: -webkit-box;
+    max-height: 20px;
+    overflow: hidden;
+    white-space: nowrap;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: orient;
+    display: -webkit-box;
 }
 
 footer {
-  clear: both;
-  text-align: left;
-  font-size: 12px;
-  padding: 10px 20px;
-  background-color: rgb(255, 255, 255);
-  border-top: 2px solid rgb(255, 87, 83);
-  box-shadow: 0 2px 2px rgb(186, 186, 186);
-
+    clear: both;
+    text-align: left;
+    font-size: 12px;
+    padding: 10px 20px;
+    background-color: rgb(255, 255, 255);
+    border-top: 2px solid rgb(255, 87, 83);
+    box-shadow: 0 2px 2px rgb(186, 186, 186);
 }
 
 
 /*LoginPage css*/
 
-form{
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-.wrapper-login{
-
-  background-image: url(../images/login_background.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  font-weight: border;
+form {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
-
-.container-login{
-  height:600px;
-  width: 800px;
-  margin: 0 auto;
+.wrapper-login {
+    background-image: url(../images/login_background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-weight: border;
 }
 
-.container-login a{
-  text-decoration: none;
-  color: rgb(51, 51, 51);
+.container-login {
+    height: 600px;
+    width: 800px;
+    margin: 0 auto;
 }
 
-.login-box{
-  position: relative;
-  top: 150px;
-  height: 150px;
-  width: 600px;
-  margin : 0 auto;
+.container-login a {
+    text-decoration: none;
+    color: rgb(51, 51, 51);
 }
 
-.login-box input{
-  width: 74.5%;
-  height: 35px;
-  margin: 5px 10%;
-  border-radius: 3px;
-  padding : 0 15px;
-}
-.login-box button{
-  width: 80%;
-  height: 35px;
-  margin: 5px 10%;
-  border: 0;
-  border-radius: 3px;
-  outline: 0;
-  background-color: rgb(255, 87, 83);
-  color: white;
+.login-box {
+    position: relative;
+    top: 150px;
+    height: 150px;
+    width: 600px;
+    margin: 0 auto;
 }
 
-
-.user-register{
-  position: relative;
-  top: 150px;
-  margin: 0 auto;
-  text-align: center;
-  font-weight: bolder;
+.login-box input {
+    width: 74.5%;
+    height: 35px;
+    margin: 5px 10%;
+    border-radius: 3px;
+    padding: 0 15px;
 }
+
+.login-box button {
+    width: 80%;
+    height: 35px;
+    margin: 5px 10%;
+    border: 3px solid rgb(255, 87, 83);
+    border-radius: 3px;
+    background-color: rgb(255, 87, 83);
+    color: rgb(255, 255, 255);
+    box-sizing: border-box;
+}
+
+.login-box button:hover {
+    background-color: rgba(255, 87, 83, 0);
+    color: rgb(51, 51, 51);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.user-register {
+    position: relative;
+    top: 150px;
+    margin: 0 auto;
+    text-align: center;
+    font-weight: bold;
+}
+
+.user-register a:hover {
+    cursor: pointer;
+    text-decoration: underline !important;
+    color: rgb(255,255,255) !important;
+}
+
 
 /*registration css*/
-.registration-main{
-  width: 70%;
-  margin: 0 auto;
-}
-.registration-main div{
-  margin : 12px 0;
-  border-bottom: 1px solid rgb(217, 217, 217);
+
+.registration-main {
+    width: 70%;
+    margin: 0 auto;
 }
 
-.registration-main p{
-  color: rgb(186, 186, 186);
-  font-size: 13px;
+.registration-main div {
+    margin: 12px 0;
+    border-bottom: 1px solid rgb(217, 217, 217);
 }
 
-.registration-main span{
-  width: 28%;
-  display: inline-block;
-  margin : 6px 0;
-  font-weight: bolder;
-  position: relative;
-  top: 1.5px;
+.registration-main p {
+    color: rgb(186, 186, 186);
+    font-size: 13px;
+    font-weight: 550;
 }
 
-.registration-main input{
-  width: 68%;
-  height: 24px;
-  margin : 6px 0;
-  display: inline-block;
-  padding : 0 6px;
-}
-
-.registration-main button{
-    width: 60%;
-    height: 35px;
-    border: 0;
-    border-radius: 3px;
-    outline: 0;
-    background-color: rgb(255, 87, 83);
-    color: white;
+.registration-main span {
+    width: 28%;
+    display: inline-block;
+    margin: 6px 0;
+    font-weight: bolder;
     position: relative;
-    left: 20%;
-    top: 20px;
+    top: 1.5px;
 }
 
-.registration-nav-list li{
-  text-align: center;
-  font-weight: bolder;
+.registration-main input {
+    width: 68%;
+    height: 24px;
+    margin: 6px 0;
+    display: inline-block;
+    padding: 0 6px;
+}
+
+.registration-main button {
+    display: block;
+    width: 295px;
+    height: 35px;
+    border: 3px solid rgb(255, 87, 83);
+    border-radius: 3px;
+    background-color: rgb(255, 87, 83);
+    color: rgb(255, 255, 255);
+    margin: 20px auto;
+}
+
+.registration-main button:hover{
+
+    background-color: rgba(255, 87, 83, 0);
+    color: rgb(51, 51, 51);
+    font-weight: bolder;
+    cursor: pointer;
+
+}
+
+.registration-nav-list li {
+    text-align: center;
+    font-weight: bolder;
 }
 
 .nav-list-thisPage {
-  color: rgb(255, 87, 83);
-  border-bottom: 1.5px solid rgb(217,217,217) !important;
-  box-shadow: 0px 0.7px 0px rgb(186,186,186);
+    color: rgb(255, 87, 83);
+    border-bottom: 1.5px solid rgb(255, 87, 83) !important;
 }
