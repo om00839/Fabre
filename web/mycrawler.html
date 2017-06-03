@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Fabre - UC_SettingPage</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./css/default.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $(".header-menunav>span").click(function() {
+            $(".header-menunav-slidemenu").slideToggle("slow");
+        });
+    });
+    </script>
+    <script>
+    var u_email = document.registration.u_email;
+    var u_password = document.registration.u_password;
+    var u_passwordCheck = document.registration.u_passwordCheck;
+    var u_nickname = document.registration.u_nickname;
+
+    function checkEmail(u_email) {
+
+        var valid = u_email.match("^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$");
+        var checkEmail = document.getElementById("checkEmail");
+
+        if (u_email != null) {
+
+            if (valid != null) {
+
+                checkEmail.innerTEXT = "OK!";
+                checkEmail.innerHTML.style.cssText = "color : rgb(83,140,255);";
+
+            } else {
+
+                checkEmail.innerTEXT = "Not Valid!";
+                checkEmail.innerHTML.style.cssText = "color : rgb(255,87,83);";
+
+            }
+
+        } else {
+
+            checkEmail.innerTEXT = "이메일을 입력해주세요.";
+
+        }
+    }
+
+    function checkPassword(u_password) {
+
+        var checkEmail = document.getElementById("checkEmail");
+
+        if (u_passwordCheck.length > 5 | u_passwordCheck.length <= 12) {
+
+            checkEmail.innerTEXT = "OK!";
+            checkEmail.innerHTML.style.cssText = "color : rgb(83,140,255);";
+
+        } else {
+
+            if (u_password.length == 0) {
+
+                checkEmail.innerTEXT = "비밀번호 (5~12자리)를 입력해주세요.";
+
+            } else if (u_password <= 5) {
+
+                checkEmail.innerTEXT = "Not Valid! 비밀번호는 5자리 이상입니다.";
+                checkEmail.innerHTML.style.cssText = "color : rgb(255,87,83);";
+
+            } else if (u_password > 12) {
+
+                checkEmail.innerTEXT = "Not Valid! 비밀번호는 12자리 이하입니다.";
+                checkEmail.innerHTML.style.cssText = "color : rgb(255,87,83);";
+
+            }
+
+        }
+    }
+
+    function checkPasswordCheck(u_password, u_passwordCheck) {
+
+        if (u_passwordCheck.equals(u_password)) {
+
+            checkPasswordCheck.innerTEXT = "OK!";
+            checkPasswordCheck.innerHTML.style.cssText = "color : rgb(83,140,255);";
+
+        } else if (u_passwordCheck) {
+
+            checkPasswordCheck.innerTEXT = "비밀번호를 다시 한번 입력해주세요.";
+
+        } else {
+
+            checkPasswordCheck.innerTEXT = "Not Valid! 비밀번호가 다릅니다.";
+            checkPasswordCheck.innerHTML.style.cssText = "color : rgb(255,87,83);";
+
+        }
+    }
+
+    function formValidation() {
+
+
+    }
+    return false;
+    }
+    </script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <!--헤더 왼쪽 로고-->
+            <div class="header-logo">
+                <img src="./images/logo.png" alt="logo" style="height:60px; width:auto;">
+            </div>
+            <div class="header-menunav">
+                <span>Setting Page
+                <img src="./images/menu_down.svg" alt="menu_down" style="height : 13px; width : auto;">
+                </span>
+                <ul class="header-menunav-slidemenu" id="slidemenu">
+                    <li><a href="#">Main Page</a></li>
+                    <li><a href="#">Setting Page</a></li>
+                    <li><a href="#">Developers Page</a></li>
+                    <li><a href="#">Logout</a></li>
+                </ul>
+            </div>
+        </header>
+        <div class="container">
+            <nav>
+                <div class="nav-header">내 크롤러 관리</div>
+                <ul class="nav-list">
+                    <li>기본정보수정</li>
+                    <li class="nav-thisPage">내 크롤러 관리</li>
+                    <li>크롤러 추가</li>
+                </ul>
+            </nav>
+            <article id="first-registration">
+                <div class="article-header"> </div>
+                <div class="article-main">
+                    <div class="crawlersetting_search">
+                        <form name="crawlersetting" class="crawlerSetting-main" action="CrawlerSettingServlet" method="post">
+                            <div class="crawlersetting_search_result">
+                                <!-- 여기에는 검색 결과들이 표시 -->
+                                <!-- 네모박스가 하나씩 나오면서 추가하기 버튼과 자세히 보기 a 이미지 -->
+                                <!-- h4 c_title / p c_url / button / img  -->
+                                <h3>내 크롤러 목록</h3>
+                                <div class="myCrawler">
+                                    <button class="favorite" type="submit", name="favorite">
+                                        <img src="./images/favorite.svg" alt="favorite" width="25px" height="auto">
+                                    </button>
+                                    <h4>c_title</h4>
+                                    <p class="myCrawler_url">c_url</p>
+                                    <button class="deleteCrawler" type="submit" name="addCrawler">
+                                        <img src="./images/deletecrawler.svg" alt="addCrawler" width="25px" height="auto">
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </article>
+        </div>
+        <footer>
+            <p>
+                Fabre 웹 시스템 개발 프로젝트
+            </p>
+        </footer>
+    </div>
+</body>
+
+</html>

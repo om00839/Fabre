@@ -2,40 +2,30 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <title>Fabre - RegistrationPage</title>
+    <title>Fabre - UserSettingPage</title>
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="./css/default.css">
     
-    <script type="text/javascript">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     
+    <script>
+        $(document).ready(function() {
+        $(".header-menunav>span").click(function() {
+            $(".header-menunav-slidemenu").slideToggle("slow");
+        });
+    });
+    </script>
+
+    <script>
+
+
     function formValidation() {
 
         var check = false;
 
-        var u_email = document.forms["registration"]["u_email"].value;
-        var u_password = document.forms["registration"]["u_password"].value;
-        var u_passwordCheck = document.forms["registration"]["u_passwordCheck"].value;
-        var u_nickname = document.forms["registration"]["u_nickname"].value;
-
-        var valid = u_email.match("^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$");
-        var checkEmail = document.getElementById("checkEmail");
-
-        if (u_email != null) {
-
-            if (valid != null) {
-
-                checkEmail.innerTEXT = "OK!";
-                checkEmail.innerHTML.style.cssText = "color : rgb(83,140,255);";
-                check = true;
-
-            } else {
-
-                checkEmail.innerTEXT = "Not Valid!";
-                checkEmail.innerHTML.style.cssText = "color : rgb(255,87,83);";
-
-            }
-
-        }
+        var u_password = document.registration.u_password;
+        var u_passwordCheck = document.registration.u_passwordCheck;
+        var u_nickname = document.registration.u_nickname;
 
         var checkPassword = document.getElementById("checkPassword");
 
@@ -51,10 +41,12 @@
 
                 checkEmail.innerTEXT = "Not Valid! 비밀번호는 5자리 이상 12자리 이하 입니다.";
                 checkEmail.innerHTML.style.cssText = "color : rgb(255,87,83);";
+                check = false;
 
             }
 
         }
+
 
        var checkPasswordCheck = document.getElementById("checkPasswordCheck");
 
@@ -70,16 +62,15 @@
 
                 checkPasswordCheck.innerTEXT = "Not Valid! 비밀번호가 다릅니다.";
                 checkPasswordCheck.innerHTML.style.cssText = "color : rgb(255,87,83);";
+                check = false;
 
             }
 
         }
 
-
         return check;
-
+    
     }
-
     </script>
 </head>
 
@@ -90,47 +81,60 @@
             <div class="header-logo">
                 <img src="./images/logo.png" alt="logo" style="height:60px; width:auto;">
             </div>
+
+            <div class="header-menunav">
+                <span>Setting Page
+                <img src="./images/menu_down.svg" alt="menu_down" style="height : 13px; width : auto;">
+                </span>
+                
+                <ul class="header-menunav-slidemenu" id="slidemenu">
+                    <li><a href="#">Main Page</a></li>
+                    <li><a href="#">Setting Page</a></li>
+                    <li><a href="#">Developers Page</a></li>
+                    <li><a href="#">Logout</a></li>
+                </ul>
+            </div>
+            
         </header>
         <div class="container">
             <nav>
-                <div class="nav-header">회원가입</div>
+                <div class="nav-header">기본정보수정</div>
                 <ul class="nav-list">
-                    <li class="nav-list-thisPage">기본정보입력</li>
+                    <li class="nav-list-thisPage">기본정보수정</li>
+                    <li>내 크롤러 관리</li>
                     <li>크롤러 추가</li>
                 </ul>
             </nav>
             <article id="first-registration">
                 <div class="article-header"> </div>
                 <div class="article-main">
-                    <form name="registration" class="registration-main"  method="post" onsubmit="return formValidation();">
-                    <!-- action="RegistrationServlet" -->
+                    <form name="usersetting" class="registration-main" action="UserSettingServlet" method="post" onsubmit="return formValidation();">
                         <div class="registration-main-email">
                             <span>이메일</span>
-                            <input type="text" placeholder="이메일" name="u_email">
+                            <input type="text" readonly = "readonly" placeholder="이메일" name="u_email">
                         </div>
-                        <p id="checkEmail"> 이메일을 입력해주세요.</p>
                         <div class="registration-main-nickname">
                             <span>닉네임</span>
-                            <input type="text" placeholder="닉네임" name="u_nickname">
+                            <input type="text" readonly = "readonly" placeholder="닉네임" name="u_nickname">
                         </div>
                         <div class="registration-main-password">
-                            <span>비밀번호</span>
+                            <span>비밀번호수정</span>
                             <input type="password" placeholder="비밀번호" name="u_password">
                         </div>
-                        <p id = "checkPassword">비밀번호 (5~12자리)를 입력해주세요.</p>
+                        <p>비밀번호를 입력해주세요 / ok/error</p>
                         <div class="registration-main-pwcheck">
                             <span>비밀번호확인</span>
                             <input type="password" placeholder="비밀번호확인" name="u_passwordCheck">
                         </div>
-                        <p id="checkPasswordCheck"> 비밀번호를 다시 입력해주세요.</p>
-                        <button type="submit" name="registration">제출</button>
+                        <p id="checkPassword"> 비밀번호를 다시 입력해주세요 / ok / error</p>
+                        <button type="submit" name="registration">수정</button>
                     </form>
                 </div>
             </article>
         </div>
         <footer>
             <p>
-                Fabre 웹시스템 개발 프로젝트
+                Fabre
             </p>
         </footer>
     </div>

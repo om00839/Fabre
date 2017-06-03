@@ -7,6 +7,26 @@ div {
     display: block;
 }
 
+button{
+
+    background-color: transparent;
+    box-shadow: none;
+    border-style: none;
+    border: 0;
+
+}
+
+a{
+
+    text-decoration: none;
+    color: rgb(120, 120, 120);
+
+}
+
+h1, h2, h3, h4, p{
+    margin: 0;
+}
+
 .wrapper {
     background-color: rgb(242, 242, 242);
     color: rgb(51, 51, 51);
@@ -69,7 +89,6 @@ header {
     display: block;
     padding: 5px;
     text-decoration: none;
-    color: rgb(51, 51, 51);
     background-color: rgba(255, 255, 255, 0.5);
     border: 1px solid rgb(217, 217, 217);
     border-radius: 3px;
@@ -348,4 +367,187 @@ form {
 .nav-list-thisPage {
     color: rgb(255, 87, 83);
     border-bottom: 1.5px solid rgb(255, 87, 83) !important;
+}
+
+/*setting css*/
+
+
+.crawlersetting_search h3{
+    margin-bottom: 12px;
+    margin-left: 12px;
+}
+
+.crawlersetting_search_box{
+
+    display: block;
+    width: 590px;
+    height: auto;
+    padding: 12px;
+    border-bottom: 1px solid rgb(51, 51, 51);
+    margin: 12px auto;
+    padding: 12px 0;
+
+}
+
+.search_box {
+
+    display: block;
+    width: 590px;
+    height: 25px;
+    margin: 12px 0;
+
+}
+
+.search_box input{
+
+    display: block;
+    float: left;
+    width: 529px;
+    height: 25px;
+    margin-left: 12px;
+
+}
+
+.search_box button{
+
+    display: block;
+    float: right;
+    width: 25px;
+    height: 25px;
+    margin-right: 12px;
+}
+
+.crawlersetting_search_result{
+
+    display: block;
+    width: 590px;
+    height: auto;
+    border-bottom: 1px solid rgb(51, 51, 51);
+    margin: 12px auto;
+}
+
+.result_box{
+    display: block;
+    width: 590px;
+    height: 25px;
+    margin: 12px 0;
+}
+
+.result_box h4{
+
+    overflow: hidden;
+    display: block;
+    float: left;
+    width: 120px;
+    height: 25px;
+
+    border-bottom: 1px solid rgb(51,51,51);
+
+    margin: 0 12px;
+
+}
+
+.result_box p{
+    
+    overflow: hidden;
+    display: block;
+    float: left;
+
+    width: 397px;
+    height: 25px;
+    border-bottom: 1px solid rgb(51,51,51);
+
+
+}
+
+.result_box button{
+    
+    display: block;
+    float: right;
+
+    width: 25px;
+    height: 25px;
+    padding: 0 !important;
+
+    background-color: transparent;
+    background-image: url("./images/addPlus.svg");
+    background-repeat: no-repeat;
+    background-size: 48px;
+    box-shadow: none;
+    border-style: none;
+    border: 0;
+    margin-right: 12px;
+
+}
+
+.crawlersetting_search_result img{
+    display: block;
+}
+
+.myCrawler{
+
+    display: block;
+    width: 590px;
+    height: 25px;
+    margin: 12px 0;
+
+}
+
+.myCrawler h4{
+
+    overflow: hidden;
+    display: block;
+    float: left;
+    width: 120px;
+    height: 25px;
+
+    border-bottom: 1px solid rgb(51,51,51);
+
+    margin: 0 12px;
+
+}
+
+.myCrawler p{
+    
+    overflow: hidden;
+    display: block;
+    float: left;
+
+    width: 360px;
+    height: 25px;
+    border-bottom: 1px solid rgb(51,51,51);
+
+
+}
+
+.favorite{
+    
+    display: block;
+    float: left;
+
+    width: 25px;
+    height: 25px;
+    padding: 0 !important;
+
+    background-color: transparent;
+    border-style: none;
+    border: 0;
+    margin-left: 12px;
+
+}
+
+.deleteCrawler{
+    
+    display: block;
+    float: right;
+
+    width: 25px;
+    height: 25px;
+    padding: 0 !important;
+
+    background-color: transparent;
+    border-style: none;
+    border: 0;
+    margin-right: 12px;
+
 }

@@ -15,15 +15,13 @@
     <link rel="stylesheet" href="./css/default.css">
     <title>Fabre - MainPage</title>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script>  
-    $(document).ready(function() {
-      $(".header-menunav>span").click(function() {
-          $(".header-menunav-slidemenu").slideToggle("slow");
-      });
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+        $(document).ready(function() {
+        $(".header-menunav>span").click(function() {
+            $(".header-menunav-slidemenu").slideToggle("slow");
+        });
     });
-
-  </script>
+    </script>
 
 
   </head>
@@ -66,9 +64,9 @@
         </span>
 
         <ul class="header-menunav-slidemenu" id="slidemenu">
-          <li><a href="#">Main</a></li>
-          <li><a href="#">Setting</a></li>
-          <li><a href="#">Developers</a></li>
+          <li><a href="#">Main Page</a></li>
+          <li><a href="#">Setting Page</a></li>
+          <li><a href="#">Developers Page</a></li>
           <li><a href="#">Logout</a></li>
         </ul>
       </div>
