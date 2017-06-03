@@ -193,6 +193,17 @@ article {
     box-shadow: 2px 2px 2px rgb(135, 135, 135);
 }
 
+.article-notice h4{
+
+    margin: 6px 0;
+}
+
+.article-notice p{
+
+    margin: 6px 0;
+
+}
+
 .article-content {
     width: 710px;
     box-sizing: border-box;
@@ -203,10 +214,21 @@ article {
     box-shadow: 2px 2px 2px rgb(135, 135, 135);
 }
 
+.article-content p{
+
+    margin: 6px 0;
+}
+
+.article-content h4{
+
+    margin: 6px 0;
+}
+
 .article-content-urlbox {
     padding: 3px 10px;
     min-height: 25px;
     border: 1px solid rgb(217, 217, 217);
+    margin: 6px 0;
 }
 
 .article-content-urlbox a {
@@ -359,17 +381,46 @@ form {
 
 }
 
+.u_email{
+
+    width: 448px;
+    height: 24px;
+    margin: 6px 0;
+    display: inline-block;
+    padding: 0 6px;
+
+}
+
+
+.duplicationcheck{
+
+    display: block;
+    width: 50px;
+    height: 35px;
+    border: 3px solid rgb(255, 87, 83);
+    border-radius: 3px;
+    background-color: rgb(255, 87, 83);
+    color: rgb(255, 255, 255);
+    margin: 20px auto;
+
+}
+
 .registration-nav-list li {
     text-align: center;
     font-weight: bolder;
 }
 
-.nav-list-thisPage {
-    color: rgb(255, 87, 83);
+
+
+/*setting css*/
+
+.nav-thisPage {
+
+    color: rgb(255, 87, 83) !important;
     border-bottom: 1.5px solid rgb(255, 87, 83) !important;
 }
 
-/*setting css*/
+
 
 
 .crawlersetting_search h3{
@@ -415,6 +466,22 @@ form {
     width: 25px;
     height: 25px;
     margin-right: 12px;
+
+    background-image: url("../images/searchbtn.svg") no-repeat;
+    background-size: cover;
+    box-shadow: none;
+    border-style: none;
+    border: 0;
+}
+
+.search_box button:hover{
+
+    background-image: url("../images/searchbtn_hover.svg") no-repeat;
+    background-size: cover;
+    box-shadow: none;
+    border-style: none;
+    border: 0;
+
 }
 
 .crawlersetting_search_result{
@@ -424,6 +491,7 @@ form {
     height: auto;
     border-bottom: 1px solid rgb(51, 51, 51);
     margin: 12px auto;
+    padding: 12px 0;
 }
 
 .result_box{
@@ -460,7 +528,7 @@ form {
 
 }
 
-.result_box button{
+#addCrawler{
     
     display: block;
     float: right;
@@ -469,14 +537,19 @@ form {
     height: 25px;
     padding: 0 !important;
 
-    background-color: transparent;
-    background-image: url("./images/addPlus.svg");
-    background-repeat: no-repeat;
-    background-size: 48px;
+    background: url(../images/addPlus.svg) no-repeat;
+    background-size: 25px;
     box-shadow: none;
     border-style: none;
     border: 0;
     margin-right: 12px;
+
+}
+
+#addCrawler:hover{
+
+    background: url(../images/addPlus_hover.svg) no-repeat;
+    background-size: cover;
 
 }
 
@@ -529,10 +602,19 @@ form {
     height: 25px;
     padding: 0 !important;
 
-    background-color: transparent;
+    background: url(../images/favorite.svg) no-repeat;
+    background-size: cover;
+    box-shadow: none;
     border-style: none;
     border: 0;
     margin-left: 12px;
+
+}
+
+.favorite:hover{
+
+    background: url(../images/favorite_hover.svg) no-repeat;
+    background-size: cover;
 
 }
 
@@ -545,9 +627,18 @@ form {
     height: 25px;
     padding: 0 !important;
 
-    background-color: transparent;
+    background: url(../images/deleteCrawler.svg) no-repeat;
+    background-size: 25px;
+    box-shadow: none;
     border-style: none;
     border: 0;
     margin-right: 12px;
+}
+
+.deleteCrawler:hover{
+
+    background: url(../images/deleteCrawler_hover.svg) no-repeat;
+    background-size: cover;
 
 }
+

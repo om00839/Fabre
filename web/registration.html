@@ -32,6 +32,7 @@
 
                 checkEmail.innerTEXT = "Not Valid!";
                 checkEmail.innerHTML.style.cssText = "color : rgb(255,87,83);";
+                check = false;
 
             }
 
@@ -51,6 +52,7 @@
 
                 checkEmail.innerTEXT = "Not Valid! 비밀번호는 5자리 이상 12자리 이하 입니다.";
                 checkEmail.innerHTML.style.cssText = "color : rgb(255,87,83);";
+                check = false;
 
             }
 
@@ -70,6 +72,7 @@
 
                 checkPasswordCheck.innerTEXT = "Not Valid! 비밀번호가 다릅니다.";
                 checkPasswordCheck.innerHTML.style.cssText = "color : rgb(255,87,83);";
+                check = false;
 
             }
 
@@ -102,11 +105,13 @@
             <article id="first-registration">
                 <div class="article-header"> </div>
                 <div class="article-main">
+                    
                     <form name="registration" class="registration-main"  method="post" onsubmit="return formValidation();">
                     <!-- action="RegistrationServlet" -->
                         <div class="registration-main-email">
                             <span>이메일</span>
                             <input type="text" placeholder="이메일" name="u_email">
+                            <button type="submit" formaction="DuplicationCheckServlet" class="duplicationcheck">중복 확인</button>
                         </div>
                         <p id="checkEmail"> 이메일을 입력해주세요.</p>
                         <div class="registration-main-nickname">

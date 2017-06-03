@@ -13,94 +13,7 @@
         });
     });
     </script>
-    <script>
-    var u_email = document.registration.u_email;
-    var u_password = document.registration.u_password;
-    var u_passwordCheck = document.registration.u_passwordCheck;
-    var u_nickname = document.registration.u_nickname;
-
-    function checkEmail(u_email) {
-
-        var valid = u_email.match("^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$");
-        var checkEmail = document.getElementById("checkEmail");
-
-        if (u_email != null) {
-
-            if (valid != null) {
-
-                checkEmail.innerTEXT = "OK!";
-                checkEmail.innerHTML.style.cssText = "color : rgb(83,140,255);";
-
-            } else {
-
-                checkEmail.innerTEXT = "Not Valid!";
-                checkEmail.innerHTML.style.cssText = "color : rgb(255,87,83);";
-
-            }
-
-        } else {
-
-            checkEmail.innerTEXT = "이메일을 입력해주세요.";
-
-        }
-    }
-
-    function checkPassword(u_password) {
-
-        var checkEmail = document.getElementById("checkEmail");
-
-        if (u_passwordCheck.length > 5 | u_passwordCheck.length <= 12) {
-
-            checkEmail.innerTEXT = "OK!";
-            checkEmail.innerHTML.style.cssText = "color : rgb(83,140,255);";
-
-        } else {
-
-            if (u_password.length == 0) {
-
-                checkEmail.innerTEXT = "비밀번호 (5~12자리)를 입력해주세요.";
-
-            } else if (u_password <= 5) {
-
-                checkEmail.innerTEXT = "Not Valid! 비밀번호는 5자리 이상입니다.";
-                checkEmail.innerHTML.style.cssText = "color : rgb(255,87,83);";
-
-            } else if (u_password > 12) {
-
-                checkEmail.innerTEXT = "Not Valid! 비밀번호는 12자리 이하입니다.";
-                checkEmail.innerHTML.style.cssText = "color : rgb(255,87,83);";
-
-            }
-
-        }
-    }
-
-    function checkPasswordCheck(u_password, u_passwordCheck) {
-
-        if (u_passwordCheck.equals(u_password)) {
-
-            checkPasswordCheck.innerTEXT = "OK!";
-            checkPasswordCheck.innerHTML.style.cssText = "color : rgb(83,140,255);";
-
-        } else if (u_passwordCheck) {
-
-            checkPasswordCheck.innerTEXT = "비밀번호를 다시 한번 입력해주세요.";
-
-        } else {
-
-            checkPasswordCheck.innerTEXT = "Not Valid! 비밀번호가 다릅니다.";
-            checkPasswordCheck.innerHTML.style.cssText = "color : rgb(255,87,83);";
-
-        }
-    }
-
-    function formValidation() {
-
-
-    }
-    return false;
-    }
-    </script>
+    
 </head>
 
 <body>
@@ -141,9 +54,7 @@
                                 <h3>크롤러 검색</h3>
                                 <div class="search_box">
                                     <input type="text" placeholder="c_name" name="c_name">
-                                    <button type="submit" name="crawlersearch">
-                                        <img src="./images/searchbtn.svg" alt="searchbtn" width="25px" , height="25px">
-                                    </button>
+                                    <button type="submit" name="crawlersearch"></button>
                                 </div>
                             </div>
                             <div class="crawlersetting_search_result">
@@ -154,8 +65,8 @@
                                 <div class="result_box">
                                     <h4>c_title</h4>
                                     <p>c_url</p>
-                                    <button type="submit" name="addCrawler">
-                                        <img src="./images/addPlus.svg" alt="addCrawler" width="25px" , height="auto">
+                                    <button id = "addCrawler" type="submit" name="addCrawler">
+                                        <!-- <img src="./images/addPlus.svg" alt="addCrawler" width="25px" , height="auto"> -->
                                     </button>
                                 </div>
                             </div>
@@ -164,6 +75,8 @@
                                 <!-- h2 c_name / h4 c_url / span a_title / span a_date ... -->
                                 <!-- 추가하기 버튼 -->
                             </div>
+
+                            <div class="test"></div>
                         </form>
                     </div>
                 </div>
