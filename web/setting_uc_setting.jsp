@@ -59,14 +59,13 @@
       <!-- 헤더 오른쪽 로그아웃/내정보페이지 -->
       <div class="header-menunav">
         <span>
-          Main Page
+          Setting Page
           <img src="./images/menu_down.svg" alt="menu_down" style="height : 13px; width : auto;">
         </span>
 
         <ul class="header-menunav-slidemenu" id="slidemenu">
-          <li><a href="#">Main Page</a></li>
-          <li><a href="#">Setting Page</a></li>
-          <li><a href="#">Developers Page</a></li>
+          <li><a target="_top">Main Page</a></li>
+          <li><a href="./setting_user.jsp">Setting Page</a></li>
           <li><a href="#">Logout</a></li>
         </ul>
       </div>

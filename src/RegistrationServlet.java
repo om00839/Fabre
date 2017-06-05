@@ -55,7 +55,7 @@ public class RegistrationServlet extends HttpServlet {
 
 					dm = new DatabaseManager();
 
-					if (dm.retrieveUser(u_email)) {
+					if (dm.retrieveUser(u_email)==null) {
 
 						dm.insertUser(user);
 						request.getRequestDispatcher("/login.html").forward(request, response);

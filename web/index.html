@@ -5,13 +5,33 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="./css/default.css">
     <title>Fabre - MainPage</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
          $(document).ready(function() {
         $(".header-menunav>span").click(function() {
             $(".header-menunav-slidemenu").slideToggle("slow");
         });
     });
+    </script> -->
+    <script>
+    debugger;
+
+    function menu() {
+        var nav = document.getElementById('header'); //문서 전체에서 id가 nav인 객체를 불러옴
+        var li = nav.getElementsByTagName('li'); //nav객체 안에 있는 li요소들을 모두 불러옴
+        for (var i = 0; i < li.length; i++) { // 각각의 li 요소들에 대해
+            li[i].style.display = 'block';
+
+        }
+        if (i == 0) {
+            li[i].style.display = 'none';
+            break;
+        }
+    };
+
+    window.onload = function() {
+        menu()
+    }
     </script>
 </head>
 
@@ -27,7 +47,6 @@
                 <span>Main Page
                 <img src="./images/menu_down.svg" alt="menu_down" style="height : 13px; width : auto;">
                 </span>
-                
                 <ul class="header-menunav-slidemenu" id="slidemenu">
                     <li><a href="#">Main Page</a></li>
                     <li><a href="#">Setting Page</a></li>

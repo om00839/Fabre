@@ -60,7 +60,7 @@ public class DatabaseManager {
 		}
 	}
 
-	public UserBean retrieveUser(String u_email, String u_password) throws SQLException {
+	public UserBean retrieveUser(String u_email) throws SQLException {
 
 		// loginServlet에 사용
 
@@ -70,11 +70,10 @@ public class DatabaseManager {
 		ResultSet rs = null;
 
 		try {
-			String query = "select * from user where u_email = ? and u_password = ?";
+			String query = "select * from user where u_email = ?";
 			ps = conn.prepareStatement(query);
 
 			ps.setString(1, u_email);
-			ps.setString(2, u_password);
 
 			rs = ps.executeQuery();
 
@@ -99,52 +98,52 @@ public class DatabaseManager {
 
 		return user;
 	}
-
-	public boolean retrieveUser(String u_email) throws SQLException {
-
-		// loginServlet에 사용
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-
-		boolean unduplicated = false;
-
-		try {
-			String query = "select * from user where u_email =?";
-
-			ps = conn.prepareStatement(query);
-
-			ps.setString(1, u_email);
-
-			rs = ps.executeQuery();
-
-			if (!rs.next()) {
-				unduplicated = true;
-			}
-
-			rs.close();
-
-		} catch (Exception e) {
-			conn.close();
-			e.printStackTrace();
-		}
-
-		System.out.println("Operation done successfully");
-
-		return unduplicated;
-	}
+//
+//	public boolean retrieveUser1(String u_email) throws SQLException {
+//
+//		// loginServlet에 사용
+//		PreparedStatement ps = null;
+//		ResultSet rs = null;
+//
+//		boolean unduplicated = false;
+//
+//		try {
+//			String query = "select * from user where u_email =?";
+//
+//			ps = conn.prepareStatement(query);
+//
+//			ps.setString(1, u_email);
+//
+//			rs = ps.executeQuery();
+//
+//			if (!rs.next()) {
+//				unduplicated = true;
+//			}
+//
+//			rs.close();
+//
+//		} catch (Exception e) {
+//			conn.close();
+//			e.printStackTrace();
+//		}
+//
+//		System.out.println("Operation done successfully");
+//
+//		return unduplicated;
+//	}
 
 	
 	public ArrayList<CrawlerBean> retrieveDisplay_C(UserBean user) throws SQLException {
 
 		ArrayList<CrawlerBean> cList = new ArrayList();
-		CrawlerBean crawler = new CrawlerBean();
+		CrawlerBean crawler;
 
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 
 		try {
 
-			String query = "select distinct c_id, c_name, c_url from display" + "where u_email = ?";
+			String query = "select distinct c_id, c_name, c_url from display where u_email = ?";
 
 			ps = conn.prepareStatement(query);
 
@@ -154,7 +153,7 @@ public class DatabaseManager {
 
 			while (rs.next()) {
 
-				crawler = null;
+				crawler = new CrawlerBean();
 
 				crawler.setC_id(rs.getInt("c_id"));
 				crawler.setC_name(rs.getString("c_name"));
@@ -181,14 +180,14 @@ public class DatabaseManager {
 		// display에 사용
 
 		ArrayList<ArticleBean> aList = new ArrayList<ArticleBean>();
-		ArticleBean article = new ArticleBean();
+		ArticleBean article;
 
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 
 		try {
 
-			String query = "select a_id, a_url, a_title, a_date from display" + "where u_email = ?;";
+			String query = "select a_id, a_url, a_title, a_date from display where u_email = ?;";
 
 			ps = conn.prepareStatement(query);
 			ps.setString(1, user.getU_email());
@@ -197,7 +196,8 @@ public class DatabaseManager {
 
 			while (rs.next()) {
 
-				article = null;
+				article  = new ArticleBean();
+				
 
 				article.setA_id(rs.getInt("a_id"));
 				article.setA_url(rs.getString("a_url"));
@@ -385,25 +385,31 @@ public class DatabaseManager {
 		// prepared.executeBatch();
 		// prepared.close();
 
-		String query = "select * from crawler";
-
-		PreparedStatement ps = dm.conn.prepareStatement(query);
-
-		ResultSet rs = ps.executeQuery();
-
-		CrawlerBean crawler = new CrawlerBean();
-
-		while (rs.next()) {
-
-			System.out.println(rs.getInt("c_id"));
-			System.out.println(rs.getString("c_name"));
-			System.out.println(rs.getString("c_url"));
-
+		UserBean user = new UserBean();
+		user.setU_email("sparrow_a1@naver.com");
+		user.setU_password("123123");
+		user.setU_nickname("Liver");
+		
+		try{
+			
+			System.out.println(user.getU_email());
+			
+			ArrayList<CrawlerBean> al = dm.retrieveDisplay_C(user);
+			System.out.println(al.size());
+			
+			
+			
+			for (int i = 0; i<al.size(); i++){
+				
+				CrawlerBean c = new CrawlerBean();
+				c = al.get(i);				
+				System.out.println(c.getC_id());
+			}
+			
+		}catch(Exception e ){
+			e.printStackTrace();
 		}
-
-		rs.close();
-
-		dm.conn.commit();
+		
 
 	}
 

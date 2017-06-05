@@ -1,8 +1,9 @@
 <%@	page language = "java"
 	errorPage="errorpage.jsp" 
-	import="java.sql.*, java.util.*, Fabre.Bean.*, java.net.URLEncoder, java.net.URLDecoder"
+	import="java.sql.*, java.util.*, Fabre.Bean.*, java.net.URLEncoder"
 	contentType = "text/html; charset=UTF-8"
 	pageEncoding = "UTF-8"
+  session = "true"
 %>
 
 <jsp:useBean id="user" scope="session" class="Fabre.Bean.UserBean" />
@@ -10,19 +11,23 @@
 <jsp:useBean id="article" scope="session" class="Fabre.Bean.ArticleBean" />
 
 <html>
+
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="./css/default.css">
     <title>Fabre - MainPage</title>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-        $(document).ready(function() {
+  
+
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+      $(document).ready(function() {
         $(".header-menunav>span").click(function() {
             $(".header-menunav-slidemenu").slideToggle("slow");
         });
-    });
+      });
     </script>
-
 
   </head>
   <body>
@@ -57,18 +62,18 @@
       </div>
 
       <!-- 헤더 오른쪽 로그아웃/내정보페이지 -->
-      <div class="header-menunav">
+      <div class="header-menunav" id="nav">
         <span>
           Main Page
           <img src="./images/menu_down.svg" alt="menu_down" style="height : 13px; width : auto;">
         </span>
 
         <ul class="header-menunav-slidemenu" id="slidemenu">
-          <li><a href="#">Main Page</a></li>
-          <li><a href="#">Setting Page</a></li>
-          <li><a href="#">Developers Page</a></li>
+          <li><a target="_top">Main Page</a></li>
+          <li><a href="./setting_user.jsp">Setting Page</a></li>
           <li><a href="#">Logout</a></li>
         </ul>
+
       </div>
 
     </header>
@@ -90,7 +95,7 @@
           for (int i = 0; i<cList.size(); i++){
         	  
         	  crawler = (CrawlerBean) cList.get(i);
-        	  out.write("<li> <a href=\"" + crawler.getC_url() + "#\">" + crawler.getC_name() +"</a></li>");
+        	  out.write("<li><a href=\"" + crawler.getC_url() + "\">" + crawler.getC_name() +"</a></li>");
 
           }
 
@@ -117,9 +122,9 @@
         <div class="article-notice">
           <h4>
             <img src="./images/megaphone.svg" alt="megaphone" style="width:35px;">
-            새로운 공지가 올라왔습니다. (or 새로운 공지가 없습니다.) (가장 최근 공지 시간)
+            새로운 공지가 올라왔습니다.
           </h4>
-          <p>공지 갯수 몇개 이렇게 알려준다.</p>
+          <p>반갑습니다.</p>
         </div>
 
         

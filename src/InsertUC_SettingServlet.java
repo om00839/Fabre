@@ -46,12 +46,21 @@ public class InsertUC_SettingServlet extends HttpServlet {
 			
 			request.getRequestDispatcher("/setting_crawler.jsp").forward(request, response);
 			
-			dm.close();
 			
 		}catch(Exception e){
 			
 			request.getRequestDispatcher("/setting_crawler.jsp").forward(request, response);
 			e.printStackTrace();
+			
+		}finally{
+			
+
+			try {
+				dm.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 		}
 		

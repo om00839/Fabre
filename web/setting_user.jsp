@@ -3,6 +3,7 @@
 	import="java.sql.*, java.util.*, Fabre.Bean.*, java.net.URLEncoder, java.net.URLDecoder"
 	contentType = "text/html; charset=UTF-8"
 	pageEncoding = "UTF-8"
+  session = "true"
 %>
 
 <jsp:useBean id="user" scope="session" class="Fabre.Bean.UserBean" />
@@ -15,12 +16,14 @@
     <link rel="stylesheet" href="./css/default.css">
     <title>Fabre - MainPage</title>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-        $(document).ready(function() {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script>
+      $(document).ready(function() {
         $(".header-menunav>span").click(function() {
-            $(".header-menunav-slidemenu").slideToggle("slow");
+        $(".header-menunav-slidemenu").slideToggle("slow");
         });
-    });
+      });
     </script>
 
 
@@ -59,14 +62,13 @@
       <!-- 헤더 오른쪽 로그아웃/내정보페이지 -->
       <div class="header-menunav">
         <span>
-          Main Page
+          Setting Page
           <img src="./images/menu_down.svg" alt="menu_down" style="height : 13px; width : auto;">
         </span>
 
         <ul class="header-menunav-slidemenu" id="slidemenu">
-          <li><a href="#">Main Page</a></li>
-          <li><a href="#">Setting Page</a></li>
-          <li><a href="#">Developers Page</a></li>
+          <li><a target="_top">Main Page</a></li>
+          <li><a href="./setting_user.jsp">Setting Page</a></li>
           <li><a href="#">Logout</a></li>
         </ul>
       </div>
@@ -79,7 +81,7 @@
             <nav>
                 <div class="nav-header">기본정보수정</div>
                 <ul class="nav-list">
-                    <li class="nav-list-thisPage">기본정보수정</li>
+                    <li class="nav-thisPage">기본정보수정</li>
                     <li>내 크롤러 관리</li>
                     <li>크롤러 추가</li>
                 </ul>
@@ -93,8 +95,8 @@
 
                       <%
 
-                        u_email = user.getU_email();
-                        u_nickname = user.getU_nickname();
+                        String u_email = (String) user.getU_email();
+                        String u_nickname = (String) user.getU_nickname();
 
                         out.write("<div class=\"registration-main-email\">");
                         out.write("<span>이메일</span>");
@@ -109,17 +111,18 @@
 
                       %>
                         
-                        <div class="registration-main-password">
-                            <span>비밀번호수정</span>
-                            <input type="password" placeholder="비밀번호" name="u_password">
-                        </div>
-                        <p>비밀번호를 입력해주세요 / ok/error</p>
-                        <div class="registration-main-pwcheck">
-                            <span>비밀번호확인</span>
-                            <input type="password" placeholder="비밀번호확인" name="u_passwordCheck">
-                        </div>
-                        <p id="checkPassword"> 비밀번호를 다시 입력해주세요 / ok / error</p>
-                        <button type="submit" name="registration">수정</button>
+                      <div class="registration-main-password">
+                          <span>비밀번호수정</span>
+                          <input type="password" placeholder="비밀번호" name="u_password">
+                      </div>
+                      <p>비밀번호를 입력해주세요 / ok/error</p>
+                      <div class="registration-main-pwcheck">
+                          <span>비밀번호확인</span>
+                          <input type="password" placeholder="비밀번호확인" name="u_passwordCheck">
+                      </div>
+                      <p id="checkPassword"> 비밀번호를 다시 입력해주세요 / ok / error</p>
+                      <button type="submit" name="registration">수정</button>
+
                     </form>
                     
                 </div>
