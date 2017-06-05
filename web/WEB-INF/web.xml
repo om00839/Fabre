@@ -25,6 +25,55 @@
 	<url-pattern>/RegistrationServlet</url-pattern>
 </servlet-mapping>   
 
+<servlet>
+	<servlet-name>DeleteUC_SettingServlet</servlet-name>
+	<servlet-class>DeleteUC_SettingServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>DeleteUC_SettingServlet</servlet-name>
+	<url-pattern>/DeleteUC_SettingServlet</url-pattern>
+</servlet-mapping>   
+
+<servlet>
+	<servlet-name>InsertUC_SettingServlet</servlet-name>
+	<servlet-class>InsertUC_SettingServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>InsertUC_SettingServlet</servlet-name>
+	<url-pattern>/InsertUC_SettingServlet</url-pattern>
+</servlet-mapping>   
+
+
+<servlet>
+	<servlet-name>RetrieveCrawlerServlet</servlet-name>
+	<servlet-class>RetrieveCrawlerServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>RetrieveCrawlerServlet</servlet-name>
+	<url-pattern>/RetrieveCrawlerServlet</url-pattern>
+</servlet-mapping>   
+
+
+<servlet>
+	<servlet-name>UpdateUC_SettingServlet</servlet-name>
+	<servlet-class>UpdateUC_SettingServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>UpdateUC_SettingServlet</servlet-name>
+	<url-pattern>/UpdateUC_SettingServlet</url-pattern>
+</servlet-mapping>   
+
+
+<servlet>
+	<servlet-name>UpdateUserServlet</servlet-name>
+	<servlet-class>UpdateUserServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>UpdateUserServlet</servlet-name>
+	<url-pattern>/UpdateUserServlet</url-pattern>
+</servlet-mapping>   
+
+
 
  <!-- Tell the server to use form-based authentication. -->
 <login-config>

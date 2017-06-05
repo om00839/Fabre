@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.security.interfaces.RSAKey;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -13,6 +12,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,51 +22,53 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Fabre.Bean.ArticleBean;
-import Fabre.Bean.CrawlerBean;
-import Fabre.Bean.UC_SettingBean;
 import Fabre.Bean.UserBean;
 
-public class DeleteUC_SettingServlet extends HttpServlet {
+public class UpdateUserServlet extends HttpServlet {
 
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		DatabaseManager dm = null;
 		
-		UserBean user = new UserBean();
+		UserBean user = (UserBean) request.getAttribute("user");
 
 		try{
 			
 			dm = new DatabaseManager();
 			String u_email = request.getParameter("u_email");
-			String id = request.getParameter("c_id");
-			int c_id=Integer.parseInt(id);
+			String u_password = request.getParameter("u_password");
 			
-			dm.deleteUC_setting(u_email, c_id);
-			ArrayList cList = dm.retrieveDisplay_C(user);
+			dm.updateUser(u_password, u_email);
 			
-			request.setAttribute("cList", cList);
+			user.setU_password(u_password);
 			
-			request.getRequestDispatcher("/setting_uc_setting.jsp").forward(request, response);
+			request.getRequestDispatcher("/setting_user.jsp").forward(request, response);
 			
 
-			dm.close();
+			
 			
 		}catch(Exception e){
 			
-			request.getRequestDispatcher("/setting_uc_setting.jsp").forward(request, response);
+			request.getRequestDispatcher("/setting_user.jsp").forward(request, response);
 			e.printStackTrace();
 			
+		}finally{
+			
+			
+			try {
+				dm.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		
-
-		
 	}
 
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
+
 
 }

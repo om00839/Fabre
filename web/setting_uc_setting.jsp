@@ -76,56 +76,51 @@
 
     <div class="container">
             <nav>
-                <div class="nav-header">크롤러 추가</div>
+                <div class="nav-header">내 크롤러 관리</div>
                 <ul class="nav-list">
                     <li>기본정보수정</li>
-                    <li>내 크롤러 관리</li>
-                    <li class="nav-thisPage">크롤러 추가</li>
+                    <li class="nav-thisPage">내 크롤러 관리</li>
+                    <li>크롤러 추가</li>
                 </ul>
             </nav>
             <article id="first-registration">
                 <div class="article-header"> </div>
                 <div class="article-main">
                     <div class="crawlersetting_search">
-                        <form name="crawlersetting" class="crawlerSetting-main" action="CrawlerSettingServlet" method="post">
-                            
-                            <div class="crawlersetting_search_box">
-                                <h3>크롤러 검색</h3>
-
-
-                                <div class="search_box">
-                                    <input type="text" placeholder="c_name" name="c_name">
-                                    <button type="submit" name="crawlersearch">
-                                        <img src="./images/searchbtn.svg" alt="searchbtn" width="25px" , height="25px">
-                                    </button>
-                                </div>
-
-
-                            </div>
+                        
                             <div class="crawlersetting_search_result">
                                 <!-- 여기에는 검색 결과들이 표시 -->
                                 <!-- 네모박스가 하나씩 나오면서 추가하기 버튼과 자세히 보기 a 이미지 -->
                                 <!-- h4 c_title / p c_url / button / img  -->
-                                <h3>검색 결과</h3>
-
+                                <h3>내 크롤러 목록</h3>
                                 <%
 
-                                ArrayList rList = (ArrayList) request.getAttribute("searchResult");
+                                  u_email = user.getU_email();
+                                  c_id = crawler.getC_id();
+                                  c_name = crawler.getC_name();
+                                  c_url = crawler.getC_url();
 
-                                for(int i = 0; i<rList.length(); i++){
-
-                                  res = (CrawlerBean) rList[i];
-
-                                  out.write("<div class=\"result_box\">");
-                                  out.write("<h4>"+res.getC_name+"</h4>");
-                                  out.write("<p>"+res.getC_url+"</p>");
-                                  out.write("<button type=\"submit\" name=\"addCrawler\">");
+                                  out.write("<div class=\"myCrawler\">");
+                                  out.write("<form name=\"updateUC_Setting\" action=\"UpdateUC_SettingServlet\" method=\"post\">");
+                                  out.write("<input type=\"text\" hidden = \"hidden\" name=\"u_email\" value=\""+u_email+">");
+                                  out.write("<input type=\"text\" hidden = \"hidden\" name=\"c_id\" value=\""+c_id+">");
+                                  out.write("<button type=\"submit\", name=\"u_favorite\" value=\"favorite\">");
+                                  out.write("<img src=\"./images/favorite.svg\" alt=\"favorite\" width=\"25px\" height=\"auto\">");
                                   out.write("</button>");
+                                  out.write("</form>");
+                                  out.write("<h4>"+c_name+"</h4>");
+                                  out.write("<p class=\"myCrawler_url\">"+c_url+"</p>");
+                                  out.write("<form name=\"deleteUC_Setting\" action=\"DeleteUC_SettingServlet\" method=\"post\">");
+                                  out.write("<input type=\"text\" hidden = \"hidden\" name=\"u_email\" value=\""+u_email+">");
+                                  out.write("<input type=\"text\" hidden = \"hidden\" name=\"c_id\" value=\""+c_id+">");
+                                  out.write("<button type=\"submit\" >");
+                                  out.write("<img src=\"./images/deletecrawler.svg\" width=\"25px\" height=\"auto\">");
+                                  out.write("</button>");
+                                  out.write("</form>");
                                   out.write("</div>");
 
-                                }
-
                                 %>
+
                                 
                             </div>
                         </form>

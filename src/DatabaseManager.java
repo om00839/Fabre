@@ -1,4 +1,6 @@
 
+
+
 import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,6 +14,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import Fabre.Bean.ArticleBean;
 import Fabre.Bean.CrawlerBean;
+import Fabre.Bean.UC_SettingBean;
 import Fabre.Bean.UserBean;
 
 public class DatabaseManager {
@@ -97,41 +100,41 @@ public class DatabaseManager {
 		return user;
 	}
 
-	
 	public boolean retrieveUser(String u_email) throws SQLException {
 
 		// loginServlet에 사용
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		
+
 		boolean unduplicated = false;
 
 		try {
 			String query = "select * from user where u_email =?";
 
 			ps = conn.prepareStatement(query);
-			
+
 			ps.setString(1, u_email);
 
 			rs = ps.executeQuery();
 
-			if(!rs.next()){
+			if (!rs.next()) {
 				unduplicated = true;
 			}
-			
+
 			rs.close();
 
 		} catch (Exception e) {
 			conn.close();
 			e.printStackTrace();
 		}
-		
+
 		System.out.println("Operation done successfully");
 
 		return unduplicated;
 	}
 
-	public ArrayList<CrawlerBean> retrieveCrawler(UserBean user) throws SQLException {
+	
+	public ArrayList<CrawlerBean> retrieveDisplay_C(UserBean user) throws SQLException {
 
 		ArrayList<CrawlerBean> cList = new ArrayList();
 		CrawlerBean crawler = new CrawlerBean();
@@ -173,7 +176,7 @@ public class DatabaseManager {
 
 	}
 
-	public ArrayList<ArticleBean> retrieveArticle(UserBean user) throws SQLException {
+	public ArrayList<ArticleBean> retrieveDisplay_A(UserBean user) throws SQLException {
 
 		// display에 사용
 
@@ -217,12 +220,157 @@ public class DatabaseManager {
 
 	}
 
+	// 이거 수정
+
 	public void close() throws SQLException {
 		// 중요 항상 해줄것
 		conn.close();
 	}
 
-	// test
+	public ArrayList<CrawlerBean> retrieveCrawler(String keyword) throws SQLException {
+
+		ArrayList<CrawlerBean> cList = new ArrayList<CrawlerBean>();
+
+		CrawlerBean crawler = new CrawlerBean();
+
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+
+			String query = "select * from crawler " + "where c_name = ? or c_url = ? ;";
+
+			ps = conn.prepareStatement(query);
+			ps.setString(1, keyword);
+			ps.setString(2, keyword);
+
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+
+				crawler.setC_id(rs.getInt("c_id"));
+				crawler.setC_url(rs.getString("c_url"));
+				crawler.setC_name(rs.getString("c_name"));
+
+				cList.add(crawler);
+
+			}
+			rs.close();
+
+		} catch (Exception e) {
+
+			conn.close();
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			// System.exit(0);
+		}
+
+		return cList;
+	}
+
+	public void deleteUC_setting(String u_email, int c_id) throws SQLException {
+
+		UC_SettingBean setting = new UC_SettingBean();
+
+		lock.lock();
+
+		try {
+
+			PreparedStatement prepared = conn.prepareStatement("delete from UC_Setting where c_id= ? and u_email=?");
+
+			prepared.setInt(1, c_id); // e_mail을 어떻게 자동적으로 할까.
+			prepared.setString(2, u_email); // e_mail을 어떻게 자동적으로 할까.
+
+			prepared.addBatch();
+			prepared.executeBatch();
+			prepared.close();
+
+			conn.commit();
+
+		} catch (Exception e) {
+			conn.close();
+			e.printStackTrace();
+		} finally {
+			lock.unlock();
+		}
+	}
+
+	public void updateUC_Setting(String u_email, int c_id, Boolean uc_favorite) throws SQLException {
+		
+		
+		lock.lock();
+
+		try {
+
+			PreparedStatement prepared = conn
+					.prepareStatement("update user set uc_favorite = ?" + " where u_email= ? and c_id=?");
+
+			prepared.setBoolean(1, uc_favorite); // e_mail을 어떻게 자동적으로 할까.
+			prepared.setString(2, u_email); // e_mail을 어떻게 자동적으로 할까.
+			prepared.setInt(3, c_id); // e_mail을 어떻게 자동적으로 할까.
+
+			prepared.addBatch();
+			prepared.executeBatch();
+			prepared.close();
+
+			conn.commit();
+
+		} catch (Exception e) {
+			conn.close();
+			e.printStackTrace();
+		} finally {
+			lock.unlock();
+		}
+	}
+
+	public void insertUC_Setting(String u_email, int c_id) throws SQLException {
+
+		// registrationServlet에 사용
+		lock.lock();
+
+		try {
+
+			PreparedStatement prepared = conn.prepareStatement("insert into user (u_email, c_id) values (?1,?2);");
+			prepared.setString(1, u_email); // 문자
+			prepared.setInt(2, c_id);
+
+			prepared.addBatch();
+			prepared.executeBatch();
+			prepared.close();
+
+			conn.commit();
+
+		} catch (Exception e) {
+			conn.close();
+			e.printStackTrace();
+		} finally {
+			lock.unlock();
+		}
+	}
+
+	public void updateUser(String u_password, String u_email) throws SQLException {
+
+		lock.lock();
+		UserBean user = new UserBean();
+		try {
+
+			PreparedStatement prepared = conn.prepareStatement("update user set u_password = ? where u_email= ?");
+			prepared.setString(1, u_password);
+			prepared.setString(2, u_email); // e_mail을 어떻게 자동적으로 할까.
+			// prepared.setString(2, user.getU_nickname());
+
+			prepared.addBatch();
+			prepared.executeBatch();
+			prepared.close();
+
+			conn.commit();
+
+		} catch (Exception e) {
+			conn.close();
+			e.printStackTrace();
+		} finally {
+			lock.unlock();
+		}
+	}
 
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 

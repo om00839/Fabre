@@ -75,51 +75,62 @@
 
 
     <div class="container">
-
             <nav>
-                <div class="nav-header">기본정보수정</div>
+                <div class="nav-header">크롤러 추가</div>
                 <ul class="nav-list">
-                    <li class="nav-list-thisPage">기본정보수정</li>
+                    <li>기본정보수정</li>
                     <li>내 크롤러 관리</li>
-                    <li>크롤러 추가</li>
+                    <li class="nav-thisPage">크롤러 추가</li>
                 </ul>
             </nav>
-
             <article id="first-registration">
                 <div class="article-header"> </div>
                 <div class="article-main">
-                    <form name="usersetting" class="registration-main" action="UserSettingServlet" method="post" onsubmit="return formValidation();">
+                    <div class="crawlersetting_search">
+                        <form name="retrieveCrawler" action="RetrieveCrawlerServlet" method="post">
+                            <div class="crawlersetting_search_box">
+                                <h3>크롤러 검색</h3>
+                                <div class="search_box">
+                                    <input type="text" name="query">
+                                    <button type="submit">
+                                        <img src="./images/searchbtn.svg" width="25px" , height="25px">
+                                    </button>
+                                </div>
+                            </div>
+                        </form> 
 
-                      <%
+                        <form name = "InsertUC_SettingServlet" action="InsertUC_SettingServlet" method="post">
 
-                        u_email = user.getU_email();
-                        u_nickname = user.getU_nickname();
+                        <div class="crawlersetting_search_result">
+                                <!-- 여기에는 검색 결과들이 표시 -->
+                                <!-- 네모박스가 하나씩 나오면서 추가하기 버튼과 자세히 보기 a 이미지 -->
+                                <!-- h4 c_title / p c_url / button / img  -->
+                                <h3>검색 결과</h3>
 
-                        out.write("<div class=\"registration-main-email\">");
-                        out.write("<span>이메일</span>");
-                        out.write("<input type=\"text\" readonly = \"readonly\" placeholder=\""+u_email+"\" name=\"u_email\">");
-                        out.write("</div>");
+                                <%
 
-                        out.write("<div class=\"registration-main-nickname\">");
-                        out.write("<span>닉네임</span>");
-                        out.write("<input type=\"text\" readonly = \"readonly\" placeholder=\""+u_nickname+"\" name=\"u_nickname\">");
-                        out.write("</div>");
+                                ArrayList rList = (ArrayList) request.getAttribute("rList");
 
+                                for(int i = 0; i<rList.length(); i++){
 
-                      %>
+                                  res = (CrawlerBean) rList[i];
+
+                                  out.write("<div class=\"result_box\">");
+                                  out.write("<h4>"+res.getC_name+"</h4>");
+                                  out.write("<p>"+res.getC_url+"</p>");
+                                  out.write("<button type=\"submit\">");
+                                  out.write("</button>");
+                                  out.write("</div>");
+
+                                }
+
+                                %>
+                            </div>
+                          
+                        </form>
+                            
                         
-                        <div class="registration-main-password">
-                            <span>비밀번호수정</span>
-                            <input type="password" placeholder="비밀번호" name="u_password">
-                        </div>
-                        <p>비밀번호를 입력해주세요 / ok/error</p>
-                        <div class="registration-main-pwcheck">
-                            <span>비밀번호확인</span>
-                            <input type="password" placeholder="비밀번호확인" name="u_passwordCheck">
-                        </div>
-                        <p id="checkPassword"> 비밀번호를 다시 입력해주세요 / ok / error</p>
-                        <button type="submit" name="registration">수정</button>
-                    </form>
+                    </div>
                 </div>
             </article>
         </div>

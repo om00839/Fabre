@@ -11,6 +11,10 @@
     function formValidation() {
 
         var check = false;
+        
+        var check1;
+        var check2;
+        var check3;
 
         var u_email = document.forms["registration"]["u_email"].value;
         var u_password = document.forms["registration"]["u_password"].value;
@@ -24,15 +28,15 @@
 
             if (valid != null) {
 
-                checkEmail.innerTEXT = "OK!";
-                checkEmail.innerHTML.style.cssText = "color : rgb(83,140,255);";
-                check = true;
+                checkEmail.textContent = "OK!";
+                checkEmail.setAttribute("style", "color : rgb(83,140,255); font-weight = bold;");
+                check1 = true;
 
             } else {
 
-                checkEmail.innerTEXT = "Not Valid!";
-                checkEmail.innerHTML.style.cssText = "color : rgb(255,87,83);";
-                check = false;
+                checkEmail.textContent= "Not Valid!";
+                checkEmail.setAttribute("style", "color : rgb(255,87,83); font-weight = bold;");
+                check1 = false;
 
             }
 
@@ -44,15 +48,15 @@
 
              if (u_password.length > 5 | u_password.length <= 12) {
 
-                checkEmail.innerTEXT = "OK!";
-                checkEmail.innerHTML.style.cssText = "color : rgb(83,140,255);";
-                check = true;
+                checkPassword.textContent = "OK!";
+                checkPassword.setAttribute("style", "color : rgb(83,140,255); font-weight = bold;");
+                check2 = true;
 
             } else {
 
-                checkEmail.innerTEXT = "Not Valid! 비밀번호는 5자리 이상 12자리 이하 입니다.";
-                checkEmail.innerHTML.style.cssText = "color : rgb(255,87,83);";
-                check = false;
+                checkPassword.textContent = "Not Valid! 비밀번호는 5자리 이상 12자리 이하 입니다.";
+                checkPassword.setAttribute("style", "color : rgb(255,87,83); font-weight = bold;");
+                check2 = false;
 
             }
 
@@ -62,20 +66,26 @@
 
         if (u_passwordCheck != null) {
 
-            if (u_passwordCheck.equals(u_password)) {
+            if (u_passwordCheck==u_password) {
 
-                checkPasswordCheck.innerTEXT = "OK!";
-                checkPasswordCheck.innerHTML.style.cssText = "color : rgb(83,140,255);";
-                check = true;
+                checkPasswordCheck.textContent = "OK!";
+                checkPasswordCheck.setAttribute("style", "color : rgb(83,140,255); font-weight = bold;");
+                check3 = true;
 
             } else {
 
-                checkPasswordCheck.innerTEXT = "Not Valid! 비밀번호가 다릅니다.";
-                checkPasswordCheck.innerHTML.style.cssText = "color : rgb(255,87,83);";
-                check = false;
+                checkPasswordCheck.textContent = "Not Valid! 비밀번호가 다릅니다.";
+                checkPasswordCheck.setAttribute("style", "color : rgb(255,87,83); font-weight = bold;");
+                check3 = false;
 
             }
 
+        }
+
+        if (check1&&check2&&check3){
+            check = true;
+        }else{
+            check = false;
         }
 
 
@@ -98,7 +108,7 @@
             <nav>
                 <div class="nav-header">회원가입</div>
                 <ul class="nav-list">
-                    <li class="nav-list-thisPage">기본정보입력</li>
+                    <li class="nav-thisPage">기본정보입력</li>
                     <li>크롤러 추가</li>
                 </ul>
             </nav>
@@ -106,12 +116,11 @@
                 <div class="article-header"> </div>
                 <div class="article-main">
                     
-                    <form name="registration" class="registration-main"  method="post" onsubmit="return formValidation();">
+                    <form name="registration" class="registration-main"  action = "RegistrationServlet" method="post" onsubmit="return formValidation();">
                     <!-- action="RegistrationServlet" -->
                         <div class="registration-main-email">
                             <span>이메일</span>
-                            <input type="text" placeholder="이메일" name="u_email">
-                            <button type="submit" formaction="DuplicationCheckServlet" class="duplicationcheck">중복 확인</button>
+                            <input type="text" placeholder="이메일" name="u_email" class="u_email">
                         </div>
                         <p id="checkEmail"> 이메일을 입력해주세요.</p>
                         <div class="registration-main-nickname">
@@ -129,6 +138,7 @@
                         </div>
                         <p id="checkPasswordCheck"> 비밀번호를 다시 입력해주세요.</p>
                         <button type="submit" name="registration">제출</button>
+                        <!-- <input type="submit" name="registration" value="제출"/> -->
                     </form>
                 </div>
             </article>

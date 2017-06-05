@@ -75,47 +75,53 @@
 
 
     <div class="container">
+
             <nav>
-                <div class="nav-header">내 크롤러 관리</div>
+                <div class="nav-header">기본정보수정</div>
                 <ul class="nav-list">
-                    <li>기본정보수정</li>
-                    <li class="nav-thisPage">내 크롤러 관리</li>
+                    <li class="nav-list-thisPage">기본정보수정</li>
+                    <li>내 크롤러 관리</li>
                     <li>크롤러 추가</li>
                 </ul>
             </nav>
+
             <article id="first-registration">
                 <div class="article-header"> </div>
                 <div class="article-main">
-                    <div class="crawlersetting_search">
-                        <form name="uc_setting" class="crawlerSetting-main" action="UC_SettingServlet" method="post">
-                            <div class="crawlersetting_search_result">
-                                <!-- 여기에는 검색 결과들이 표시 -->
-                                <!-- 네모박스가 하나씩 나오면서 추가하기 버튼과 자세히 보기 a 이미지 -->
-                                <!-- h4 c_title / p c_url / button / img  -->
-                                <h3>내 크롤러 목록</h3>
-                                <%
 
-                                  c_id = crawler.getC_id();
-                                  c_name = crawler.getC_name();
-                                  c_url = crawler.getC_url();
+                    <form name="usersetting" class="registration-main" action="UpdateUserServlet" method="post" onsubmit="return formValidation();">
 
-                                  out.write("<div class=\"myCrawler\">");
-                                  out.write("<button class=\"favorite\" type=\"submit\", name=\"favorite\">");
-                                  out.write("<img src=\"./images/favorite.svg\" alt=\"favorite\" width=\"25px\" height=\"auto\">");
-                                  out.write("</button>");
-                                  out.write("<h4>"+c_name+"</h4>");
-                                  out.write("<p class=\"myCrawler_url\">"+c_url+"</p>");
-                                  out.write("<button class=\"deleteCrawler\" type=\"submit\" name=\"addCrawler\">");
-                                  out.write("<img src=\"./images/deletecrawler.svg\" alt=\"addCrawler\" width=\"25px\" height=\"auto\">");
-                                  out.write("</button>");
-                                  out.write("</div>");
+                      <%
 
-                                %>
+                        u_email = user.getU_email();
+                        u_nickname = user.getU_nickname();
 
-                                
-                            </div>
-                        </form>
-                    </div>
+                        out.write("<div class=\"registration-main-email\">");
+                        out.write("<span>이메일</span>");
+                        out.write("<input type=\"text\" readonly = \"readonly\" name=\"u_email\" value=\""+u_email+"\">");
+                        out.write("</div>");
+
+                        out.write("<div class=\"registration-main-nickname\">");
+                        out.write("<span>닉네임</span>");
+                        out.write("<input type=\"text\" readonly = \"readonly\" value=\""+u_nickname+"\" name=\"u_nickname\">");
+                        out.write("</div>");
+
+
+                      %>
+                        
+                        <div class="registration-main-password">
+                            <span>비밀번호수정</span>
+                            <input type="password" placeholder="비밀번호" name="u_password">
+                        </div>
+                        <p>비밀번호를 입력해주세요 / ok/error</p>
+                        <div class="registration-main-pwcheck">
+                            <span>비밀번호확인</span>
+                            <input type="password" placeholder="비밀번호확인" name="u_passwordCheck">
+                        </div>
+                        <p id="checkPassword"> 비밀번호를 다시 입력해주세요 / ok / error</p>
+                        <button type="submit" name="registration">수정</button>
+                    </form>
+                    
                 </div>
             </article>
         </div>

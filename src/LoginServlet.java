@@ -54,8 +54,8 @@ public class LoginServlet extends HttpServlet {
 			
 			if (user!=null) {
 				
-				cList = dm.retrieveCrawler(user);
-				aList = dm.retrieveArticle(user);
+				cList = dm.retrieveDisplay_C(user);
+				aList = dm.retrieveDisplay_A(user);
 
 				request.setAttribute("user", user);
 				request.setAttribute("cList", cList);

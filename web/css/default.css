@@ -241,6 +241,7 @@ article {
 }
 
 footer {
+    height: 60px;
     clear: both;
     text-align: left;
     font-size: 12px;
