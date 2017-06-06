@@ -464,24 +464,24 @@ form {
 
     display: block;
     float: right;
+
     width: 25px;
     height: 25px;
-    margin-right: 12px;
 
-    background-image: url("../images/searchbtn.svg") no-repeat;
-    background-size: cover;
+    background: url(../images/searchbtn.svg) no-repeat;
+    background-size: 25px;
     box-shadow: none;
     border-style: none;
     border: 0;
+    margin-right: 12px;
+
+
 }
 
 .search_box button:hover{
 
-    background-image: url("../images/searchbtn_hover.svg") no-repeat;
+    background: url(../images/searchbtn_hover.svg) no-repeat;
     background-size: cover;
-    box-shadow: none;
-    border-style: none;
-    border: 0;
 
 }
 

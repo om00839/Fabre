@@ -39,15 +39,17 @@ public class UpdateUserServlet extends HttpServlet {
 			dm = new DatabaseManager();
 			String u_email = request.getParameter("u_email");
 			String u_password = request.getParameter("u_password");
+			String u_passwordCheck = request.getParameter("u_passwordCheck");
 			
-			dm.updateUser(u_password, u_email);
-			
-			user.setU_password(u_password);
-			
-			request.getRequestDispatcher("/setting_user.jsp").forward(request, response);
-			
-
-			
+			if(u_password.equals(u_passwordCheck)){
+				
+				dm.updateUser(u_password, u_email);
+				
+				user.setU_password(u_password);
+				
+				request.getRequestDispatcher("/setting_uc_setting.jsp").forward(request, response);
+				
+			}
 			
 		}catch(Exception e){
 			

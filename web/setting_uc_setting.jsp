@@ -28,6 +28,7 @@
   <body>
 
   <%
+
     String auth = (String) request.getAttribute("auth");
     if (auth == null) {
       auth = (String)session.getAttribute("auth");
@@ -35,7 +36,9 @@
     
     if (!auth.equals("ok")) {
       try {
+
         request.getRequestDispatcher("/login.html").forward(request, response);
+
       }catch (Exception e) {
         e.printStackTrace();
       }
@@ -44,6 +47,11 @@
     user = (UserBean) request.getAttribute("user");
     if(user==null){
       user = (UserBean) session.getAttribute("user");
+    }
+
+    ArrayList cList = (ArrayList) request.getAttribute("cList");
+    if (cList == null){
+      cList = (ArrayList) session.getAttribute("cList");
     }
     
   %>
@@ -66,7 +74,7 @@
         <ul class="header-menunav-slidemenu" id="slidemenu">
           <li><a target="_top">Main Page</a></li>
           <li><a href="./setting_user.jsp">Setting Page</a></li>
-          <li><a href="#">Logout</a></li>
+          <li><a href="LogoutServlet">Logout</a></li>
         </ul>
       </div>
 
@@ -77,9 +85,9 @@
             <nav>
                 <div class="nav-header">내 크롤러 관리</div>
                 <ul class="nav-list">
-                    <li>기본정보수정</li>
-                    <li class="nav-thisPage">내 크롤러 관리</li>
-                    <li>크롤러 추가</li>
+                    <li><a href="./setting_user.jsp">기본정보수정</a></li>
+                    <li class="nav-thisPage"><a target="_top">내 크롤러 관리</a></li>
+                    <li><a href="./setting_crawler">크롤러 추가</a></li>
                 </ul>
             </nav>
             <article id="first-registration">
@@ -94,30 +102,35 @@
                                 <h3>내 크롤러 목록</h3>
                                 <%
 
-                                  u_email = user.getU_email();
-                                  c_id = crawler.getC_id();
-                                  c_name = crawler.getC_name();
-                                  c_url = crawler.getC_url();
+                                String u_email = user.getU_email();
+
+                                for (int i = 0; i<cList.size(); i++) {
+
+                                  crawler = (CrawlerBean) cList.get(i);
+
+                                  int c_id = crawler.getC_id();
+                                  String c_name = crawler.getC_name();
+                                  String c_url = crawler.getC_url();
 
                                   out.write("<div class=\"myCrawler\">");
+
                                   out.write("<form name=\"updateUC_Setting\" action=\"UpdateUC_SettingServlet\" method=\"post\">");
                                   out.write("<input type=\"text\" hidden = \"hidden\" name=\"u_email\" value=\""+u_email+">");
                                   out.write("<input type=\"text\" hidden = \"hidden\" name=\"c_id\" value=\""+c_id+">");
-                                  out.write("<button type=\"submit\", name=\"u_favorite\" value=\"favorite\">");
-                                  out.write("<img src=\"./images/favorite.svg\" alt=\"favorite\" width=\"25px\" height=\"auto\">");
-                                  out.write("</button>");
+                                  out.write("<button type=\"submit\" class=\"favorite\" name=\"u_favorite\" value=\"favorite\"></button>");
                                   out.write("</form>");
+
                                   out.write("<h4>"+c_name+"</h4>");
                                   out.write("<p class=\"myCrawler_url\">"+c_url+"</p>");
                                   out.write("<form name=\"deleteUC_Setting\" action=\"DeleteUC_SettingServlet\" method=\"post\">");
                                   out.write("<input type=\"text\" hidden = \"hidden\" name=\"u_email\" value=\""+u_email+">");
                                   out.write("<input type=\"text\" hidden = \"hidden\" name=\"c_id\" value=\""+c_id+">");
-                                  out.write("<button type=\"submit\" >");
-                                  out.write("<img src=\"./images/deletecrawler.svg\" width=\"25px\" height=\"auto\">");
-                                  out.write("</button>");
+                                  out.write("<button class = \"deleteCrawler\" type=\"submit\"></button>");
                                   out.write("</form>");
+                                  
                                   out.write("</div>");
 
+                                }
                                 %>
 
                                 

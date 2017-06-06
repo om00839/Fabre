@@ -50,6 +50,10 @@
     if(user==null){
       user = (UserBean) session.getAttribute("user");
     }
+
+    session.setAttribute("user", user);
+    session.setAttribute("auth", auth);
+
     
   %>
 
@@ -71,7 +75,7 @@
         <ul class="header-menunav-slidemenu" id="slidemenu">
           <li><a target="_top">Main Page</a></li>
           <li><a href="./setting_user.jsp">Setting Page</a></li>
-          <li><a href="#">Logout</a></li>
+          <li><a href="LogoutServlet">Logout</a></li>
         </ul>
 
       </div>
@@ -95,18 +99,12 @@
           for (int i = 0; i<cList.size(); i++){
         	  
         	  crawler = (CrawlerBean) cList.get(i);
-        	  out.write("<li><a href=\"" + crawler.getC_url() + "\">" + crawler.getC_name() +"</a></li>");
+        	  out.write("<li><a target=\"_blank\" href=\"" + crawler.getC_url() + "\">" + crawler.getC_name() +"</a></li>");
 
           }
 
-          %>
-  
-          <!-- servlet or php로 내 웹페이지들 불러오기 -->
-          <li><a href="#">1</a></li>
-          <li><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#">4</a></li>
-          <li><a href="#">5</a></li>            
+          %>      
+
         </ul>
 
       </nav>
@@ -144,26 +142,6 @@
           }
 
           %>
-          
-        
-
-        <div class="article-content">
-          <h4>title</h4>
-          <p>date : 0000-00-00</p>
-          <div class="article-content-urlbox">
-            <a href="#" target="_blank">http://yonsei.ac.kr</a>
-          </div>
-          <p>cralwer : 크롤러 이름</p>
-        </div>
-
-        <div class="article-content">
-          <h4>신촌(국제) 캠퍼스 2017 여름 계절제 수업 안내</h4>
-          <p>date : 2017-03-29</p>
-          <div class="article-content-urlbox">
-            <a href="#" target="_blank">http://yonsei.ac.kr/sc/support/notice.jsp?mode=view&article_no=151493&board_wrapper=%2Fsc%2Fsupport%2Fnotice.jsp&pager.offset=0&board_no=15</a>
-          </div>
-          <p>cralwer : www.yonsei.ac.kr </p>
-        </div>
 
       </article>
     </div>

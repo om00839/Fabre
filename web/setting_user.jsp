@@ -7,8 +7,6 @@
 %>
 
 <jsp:useBean id="user" scope="session" class="Fabre.Bean.UserBean" />
-<jsp:useBean id="crawler" scope="session" class="Fabre.Bean.CrawlerBean" />
-<jsp:useBean id="article" scope="session" class="Fabre.Bean.ArticleBean" />
 
 <html>
   <head>
@@ -31,6 +29,7 @@
   <body>
 
   <%
+
     String auth = (String) request.getAttribute("auth");
     if (auth == null) {
       auth = (String)session.getAttribute("auth");
@@ -38,7 +37,9 @@
     
     if (!auth.equals("ok")) {
       try {
+
         request.getRequestDispatcher("/login.html").forward(request, response);
+
       }catch (Exception e) {
         e.printStackTrace();
       }
@@ -48,6 +49,8 @@
     if(user==null){
       user = (UserBean) session.getAttribute("user");
     }
+
+    session.setAttribute("user", user);
     
   %>
 
@@ -67,9 +70,9 @@
         </span>
 
         <ul class="header-menunav-slidemenu" id="slidemenu">
-          <li><a target="_top">Main Page</a></li>
-          <li><a href="./setting_user.jsp">Setting Page</a></li>
-          <li><a href="#">Logout</a></li>
+          <li><a href="./main.jsp">Main Page</a></li>
+          <li><a target="_top">Setting Page</a></li>
+          <li><a href="LogoutServlet">Logout</a></li>
         </ul>
       </div>
 
@@ -81,9 +84,9 @@
             <nav>
                 <div class="nav-header">기본정보수정</div>
                 <ul class="nav-list">
-                    <li class="nav-thisPage">기본정보수정</li>
-                    <li>내 크롤러 관리</li>
-                    <li>크롤러 추가</li>
+                    <li class="nav-thisPage"><a target="_top">기본정보수정</a></li>
+                    <li><a href="./setting_uc_setting.jsp">내 크롤러 관리</a></li>
+                    <li><a href="./setting_crawler.jsp">크롤러 추가</a></li>
                 </ul>
             </nav>
 
@@ -115,12 +118,12 @@
                           <span>비밀번호수정</span>
                           <input type="password" placeholder="비밀번호" name="u_password">
                       </div>
-                      <p>비밀번호를 입력해주세요 / ok/error</p>
+                      <p>비밀번호 (5~12자리)를 입력해주세요.</p>
                       <div class="registration-main-pwcheck">
                           <span>비밀번호확인</span>
                           <input type="password" placeholder="비밀번호확인" name="u_passwordCheck">
                       </div>
-                      <p id="checkPassword"> 비밀번호를 다시 입력해주세요 / ok / error</p>
+                      <p id="checkPassword"> 비밀번호를 다시 입력해주세요.</p>
                       <button type="submit" name="registration">수정</button>
 
                     </form>

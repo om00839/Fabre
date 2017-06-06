@@ -28,6 +28,7 @@
   <body>
 
   <%
+
     String auth = (String) request.getAttribute("auth");
     if (auth == null) {
       auth = (String)session.getAttribute("auth");
@@ -35,7 +36,9 @@
     
     if (!auth.equals("ok")) {
       try {
+
         request.getRequestDispatcher("/login.html").forward(request, response);
+
       }catch (Exception e) {
         e.printStackTrace();
       }
@@ -66,7 +69,7 @@
         <ul class="header-menunav-slidemenu" id="slidemenu">
           <li><a target="_top">Main Page</a></li>
           <li><a href="./setting_user.jsp">Setting Page</a></li>
-          <li><a href="#">Logout</a></li>
+          <li><a href="LogoutServlet">Logout</a></li>
         </ul>
       </div>
 
@@ -77,9 +80,9 @@
             <nav>
                 <div class="nav-header">크롤러 추가</div>
                 <ul class="nav-list">
-                    <li>기본정보수정</li>
-                    <li>내 크롤러 관리</li>
-                    <li class="nav-thisPage">크롤러 추가</li>
+                    <li><a href="/setting_user.jsp">기본정보수정</a></li>
+                    <li><a href="./setting_uc_setting.jsp">내 크롤러 관리</a></li>
+                    <li class="nav-thisPage"><a target="_top">크롤러 추가</a></li>
                 </ul>
             </nav>
             <article id="first-registration">
@@ -91,9 +94,7 @@
                                 <h3>크롤러 검색</h3>
                                 <div class="search_box">
                                     <input type="text" name="query">
-                                    <button type="submit">
-                                        <img src="./images/searchbtn.svg" width="25px" , height="25px">
-                                    </button>
+                                    <button type="submit"></button>
                                 </div>
                             </div>
                         </form> 
@@ -101,26 +102,30 @@
                         <form name = "InsertUC_SettingServlet" action="InsertUC_SettingServlet" method="post">
 
                         <div class="crawlersetting_search_result">
-                                <!-- 여기에는 검색 결과들이 표시 -->
-                                <!-- 네모박스가 하나씩 나오면서 추가하기 버튼과 자세히 보기 a 이미지 -->
-                                <!-- h4 c_title / p c_url / button / img  -->
+                                
                                 <h3>검색 결과</h3>
+
+                                <!-- 주의 rList는 crawler 테이블에서 가져왔다. cList와는 다른 내용을 가지고 있음 --> 
 
                                 <%
 
                                 ArrayList rList = (ArrayList) request.getAttribute("rList");
 
-                                for(int i = 0; i<rList.length(); i++){
+                                if (rList != null) {
 
-                                  res = (CrawlerBean) rList[i];
+                                  for(int i = 0; i<rList.size(); i++){
 
-                                  out.write("<div class=\"result_box\">");
-                                  out.write("<h4>"+res.getC_name+"</h4>");
-                                  out.write("<p>"+res.getC_url+"</p>");
-                                  out.write("<button type=\"submit\">");
-                                  out.write("</button>");
-                                  out.write("</div>");
+                                    CrawlerBean res = (CrawlerBean) rList.get(i);
 
+                                    out.write("<div class=\"result_box\">");
+                                    out.write("<h4>"+res.getC_name()+"</h4>");
+                                    out.write("<p>"+res.getC_url()+"</p>");
+                                    out.write("<button id=\"addCrawler\" type=\"submit\">");
+                                    out.write("</button>");
+                                    out.write("</div>");
+
+                                  }
+                                  
                                 }
 
                                 %>
