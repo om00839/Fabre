@@ -52,7 +52,7 @@ public class LoginServlet extends HttpServlet {
 			user = dm.retrieveUser(u_email);
 			
 			
-			if (user.getU_password().equals(u_password)) {
+			if (user!=null && user.getU_password().equals(u_password)) {
 				
 				cList = dm.retrieveDisplay_C(user);
 				aList = dm.retrieveDisplay_A(user);
@@ -82,6 +82,8 @@ public class LoginServlet extends HttpServlet {
 			
 
 		} catch (Exception e) {
+			
+			e.printStackTrace();
 		}finally{
 			
 

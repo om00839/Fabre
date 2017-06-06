@@ -3,14 +3,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Fabre.Bean.CrawlerBean;
 
-public class RetrieveCrawlerServlet {
+public class RetrieveCrawlerServlet extends HttpServlet {
 	
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, SQLException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
 		response.setContentType("text/html; charset=UTF-8");
 		DatabaseManager dm = null;
@@ -37,13 +38,18 @@ public class RetrieveCrawlerServlet {
 			
 		}finally{
 			
-			dm.close();
+			try {
+				dm.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 		}
 
 	}
 
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, SQLException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		doGet(request, response);
 	}
 

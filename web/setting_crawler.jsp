@@ -48,6 +48,21 @@
     if(user==null){
       user = (UserBean) session.getAttribute("user");
     }
+
+    ArrayList cList = (ArrayList) request.getAttribute("cList");
+    if(cList==null){ 
+      cList = (ArrayList) session.getAttribute("cList");
+    }
+
+    ArrayList aList = (ArrayList) request.getAttribute("aList");
+    if(aList == null){
+      aList = (ArrayList) session.getAttribute("aList");
+    }
+
+    session.setAttribute("user", user);
+    session.setAttribute("auth", auth);
+    session.setAttribute("cList", cList);
+    session.setAttribute("aList", aList);
     
   %>
 
@@ -82,7 +97,7 @@
                 <ul class="nav-list">
                     <li><a href="/setting_user.jsp">기본정보수정</a></li>
                     <li><a href="./setting_uc_setting.jsp">내 크롤러 관리</a></li>
-                    <li class="nav-thisPage"><a target="_top">크롤러 추가</a></li>
+                    <li class="nav-thisPage">크롤러 추가</li>
                 </ul>
             </nav>
             <article id="first-registration">
@@ -120,6 +135,7 @@
                                     out.write("<div class=\"result_box\">");
                                     out.write("<h4>"+res.getC_name()+"</h4>");
                                     out.write("<p>"+res.getC_url()+"</p>");
+                                    out.write("<input type=\"text\" hidden = \"hidden\" name=\"c_id\" value=\""+res.getC_id()+">");
                                     out.write("<button id=\"addCrawler\" type=\"submit\">");
                                     out.write("</button>");
                                     out.write("</div>");

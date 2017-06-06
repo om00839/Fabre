@@ -50,7 +50,21 @@
       user = (UserBean) session.getAttribute("user");
     }
 
+    ArrayList cList = (ArrayList) request.getAttribute("cList");
+    if(cList==null){ 
+      cList = (ArrayList) session.getAttribute("cList");
+    }
+
+    ArrayList aList = (ArrayList) request.getAttribute("aList");
+    if(aList == null){
+      aList = (ArrayList) session.getAttribute("aList");
+    }
+
     session.setAttribute("user", user);
+    session.setAttribute("auth", auth);
+    session.setAttribute("cList", cList);
+    session.setAttribute("aList", aList);
+
     
   %>
 

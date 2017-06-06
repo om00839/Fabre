@@ -23,6 +23,7 @@ public class DatabaseManager {
 	private static final String database = "C:\\workspace\\Fabre\\web.db";
 	private Connection conn;
 
+	
 	public DatabaseManager() throws ClassNotFoundException, SQLException {
 		// database = "web.db" 디폴트 삭제;
 		Class.forName("org.sqlite.JDBC");
@@ -98,7 +99,8 @@ public class DatabaseManager {
 
 		return user;
 	}
-//
+
+	
 //	public boolean retrieveUser1(String u_email) throws SQLException {
 //
 //		// loginServlet에 사용
@@ -238,11 +240,10 @@ public class DatabaseManager {
 
 		try {
 
-			String query = "select * from crawler " + "where c_name = ? or c_url = ? ;";
-
+			String query = "select * from crawler " + "where c_name = ?;";
+//			 or c_url = ? 
 			ps = conn.prepareStatement(query);
 			ps.setString(1, keyword);
-			ps.setString(2, keyword);
 
 			rs = ps.executeQuery();
 
@@ -329,7 +330,7 @@ public class DatabaseManager {
 
 		try {
 
-			PreparedStatement prepared = conn.prepareStatement("insert into user (u_email, c_id) values (?1,?2);");
+			PreparedStatement prepared = conn.prepareStatement("insert into uc_setting (u_email, c_id) values (?1,?2);");
 			prepared.setString(1, u_email); // 문자
 			prepared.setInt(2, c_id);
 

@@ -51,6 +51,16 @@
       user = (UserBean) session.getAttribute("user");
     }
 
+    ArrayList cList = (ArrayList) request.getAttribute("cList");
+    if(cList==null){ 
+      cList = (ArrayList) session.getAttribute("cList");
+    }
+
+    ArrayList aList = (ArrayList) request.getAttribute("aList");
+    if(aList == null){
+      aList = (ArrayList) session.getAttribute("aList");
+    }
+
     session.setAttribute("user", user);
     session.setAttribute("auth", auth);
 
@@ -94,7 +104,7 @@
 
           <%
 
-          ArrayList cList = (ArrayList) request.getAttribute("cList");
+          
 
           for (int i = 0; i<cList.size(); i++){
         	  
@@ -102,6 +112,8 @@
         	  out.write("<li><a target=\"_blank\" href=\"" + crawler.getC_url() + "\">" + crawler.getC_name() +"</a></li>");
 
           }
+
+          session.setAttribute("cList", cList);
 
           %>      
 
@@ -127,7 +139,6 @@
 
         
           <%
-          ArrayList aList = (ArrayList) request.getAttribute("aList");
 
           for (int i = 0; i<aList.size(); i++){
         	  
@@ -138,6 +149,8 @@
         	  out.write("<p> date : "+article.getA_date()+"</p>");
         	  out.write("<div class=\'article-content-urlbox\'>");
         	  out.write("<a href=\'"+article.getA_url()+"\' target=\'_blank\'>"+article.getA_url()+"</a></div></div>");
+
+            session.setAttribute("aList", aList);
         	  
           }
 
