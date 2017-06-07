@@ -35,6 +35,8 @@ public class DeleteUC_SettingServlet extends HttpServlet {
 		DatabaseManager dm = null;
 		
 		UserBean user = new UserBean();
+		
+		String msg = "";
 
 		try{
 			
@@ -43,17 +45,28 @@ public class DeleteUC_SettingServlet extends HttpServlet {
 			String id = request.getParameter("c_id");
 			int c_id=Integer.parseInt(id);
 			
+			
 			dm.deleteUC_setting(u_email, c_id);
+			
+			user = dm.retrieveUser(u_email);
+			
 			ArrayList cList = dm.retrieveDisplay_C(user);
+			ArrayList aList = dm.retrieveDisplay_A(user);
 			
 			request.setAttribute("cList", cList);
+			request.setAttribute("aList", aList);
 			
+			msg = "내 크롤러 삭제에 성공했습니다.";
+			
+			request.setAttribute("msg", msg);
 			request.getRequestDispatcher("/setting_uc_setting.jsp").forward(request, response);
 			
 
 			
 		}catch(Exception e){
 			
+			msg = "내 크롤러 삭제에 실패했습니다.";
+			request.setAttribute("msg", msg);
 			request.getRequestDispatcher("/setting_uc_setting.jsp").forward(request, response);
 			e.printStackTrace();
 			
@@ -68,9 +81,6 @@ public class DeleteUC_SettingServlet extends HttpServlet {
 			}
 			
 		}
-		
-
-		
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
