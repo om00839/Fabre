@@ -7,7 +7,7 @@ public class ArticleBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private int a_id;
-	private int c_id;
+	private String c_id;
 	private String a_url;
 	private String a_title;
 	private String a_date;
@@ -38,7 +38,7 @@ public class ArticleBean implements Serializable {
 		return a_id;
 	}
 	
-	public int getC_id(){
+	public String getC_id(){
 		return c_id;
 	}
 	

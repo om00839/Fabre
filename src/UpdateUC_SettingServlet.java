@@ -36,6 +36,7 @@ public class UpdateUC_SettingServlet extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		DatabaseManager dm = null;
 
+		String msg = "";
 		
 		try {
 			
@@ -57,14 +58,20 @@ public class UpdateUC_SettingServlet extends HttpServlet {
 			
 
 			dm.updateUC_Setting(u_email, c_id, uc_favorite);
+			UserBean user = dm.retrieveUser(u_email);
+			ArrayList<CrawlerBean> cList = dm.retrieveDisplay_C(user);
 			
+			request.setAttribute("cList", cList);
+			
+			msg = "내 크롤러 수정에 성공했습니다.";
+			request.setAttribute("msg", msg);
 			request.getRequestDispatcher("/setting_uc_setting.jsp").forward(request, response);
-			
-			
 			
 
 		} catch (Exception e) {
 			
+			msg = "내 크롤러 수정에 실패했습니다.";
+			request.setAttribute("msg", msg);
 			request.getRequestDispatcher("/setting_uc_setting.jsp").forward(request, response);
 			
 		}finally{

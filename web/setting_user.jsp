@@ -1,12 +1,10 @@
 <%@	page language = "java"
-	errorPage="errorpage.jsp" 
 	import="java.sql.*, java.util.*, Fabre.Bean.*, java.net.URLEncoder, java.net.URLDecoder"
 	contentType = "text/html; charset=UTF-8"
 	pageEncoding = "UTF-8"
   session = "true"
 %>
 
-<jsp:useBean id="user" scope="session" class="Fabre.Bean.UserBean" />
 
 <html>
   <head>
@@ -15,13 +13,88 @@
     <title>Fabre - MainPage</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-    <script>
+    <script>        
       $(document).ready(function() {
-        $(".header-menunav>span").click(function() {
-        $(".header-menunav-slidemenu").slideToggle("slow");
-        });
+          $(".header-menunav>span").click(function() {
+              $(".header-menunav-slidemenu").slideToggle("slow");
+          });
       });
+    </script>
+    
+    <script type="text/javascript">
+
+      var msg = <%=request.getAttribute("msg")%>;
+      
+      if (msg != null) {
+        window.alert(msg);
+      }
+
+    </script>
+
+    <script type="text/javascript">
+    
+    function formValidation() {
+
+        var check = false;
+        
+        var check2;
+        var check3;
+
+
+        var u_password = document.forms["registration"]["u_password"].value;
+        var u_passwordCheck = document.forms["registration"]["u_passwordCheck"].value;
+
+        var checkPassword = document.getElementById("checkPassword");
+
+        if (u_password != null ){
+
+             if (u_password.length > 5 | u_password.length <= 12) {
+
+                checkPassword.textContent = "OK!";
+                checkPassword.setAttribute("style", "color : rgb(83,140,255); font-weight = bold;");
+                check2 = true;
+
+            } else {
+
+                checkPassword.textContent = "Not Valid! 비밀번호는 5자리 이상 12자리 이하 입니다.";
+                checkPassword.setAttribute("style", "color : rgb(255,87,83); font-weight = bold;");
+                check2 = false;
+
+            }
+
+        }
+
+       var checkPasswordCheck = document.getElementById("checkPasswordCheck");
+
+        if (u_passwordCheck != null) {
+
+            if (u_passwordCheck==u_password) {
+
+                checkPasswordCheck.textContent = "OK!";
+                checkPasswordCheck.setAttribute("style", "color : rgb(83,140,255); font-weight = bold;");
+                check3 = true;
+
+            } else {
+
+                checkPasswordCheck.textContent = "Not Valid! 비밀번호가 다릅니다.";
+                checkPasswordCheck.setAttribute("style", "color : rgb(255,87,83); font-weight = bold;");
+                check3 = false;
+
+            }
+
+        }
+
+        if (check2&&check3){
+            check = true;
+        }else{
+            check = false;
+        }
+
+
+        return check;
+
+    }
+
     </script>
 
 
@@ -45,26 +118,16 @@
       }
     }
     
-    user = (UserBean) request.getAttribute("user");
+    UserBean user = (UserBean) request.getAttribute("user");
     if(user==null){
+
       user = (UserBean) session.getAttribute("user");
+      
+    }else{
+
+      session.setAttribute("user", user);
+
     }
-
-    ArrayList cList = (ArrayList) request.getAttribute("cList");
-    if(cList==null){ 
-      cList = (ArrayList) session.getAttribute("cList");
-    }
-
-    ArrayList aList = (ArrayList) request.getAttribute("aList");
-    if(aList == null){
-      aList = (ArrayList) session.getAttribute("aList");
-    }
-
-    session.setAttribute("user", user);
-    session.setAttribute("auth", auth);
-    session.setAttribute("cList", cList);
-    session.setAttribute("aList", aList);
-
     
   %>
 
@@ -85,7 +148,7 @@
 
         <ul class="header-menunav-slidemenu" id="slidemenu">
           <li><a href="./main.jsp">Main Page</a></li>
-          <li><a target="_top">Setting Page</a></li>
+          <li><a target="./setting_user.jsp">Setting Page</a></li>
           <li><a href="LogoutServlet">Logout</a></li>
         </ul>
       </div>
@@ -112,8 +175,8 @@
 
                       <%
 
-                        String u_email = (String) user.getU_email();
-                        String u_nickname = (String) user.getU_nickname();
+                        String u_email = user.getU_email();
+                        String u_nickname = user.getU_nickname();
 
                         out.write("<div class=\"registration-main-email\">");
                         out.write("<span>이메일</span>");
@@ -149,7 +212,7 @@
 
       <footer>
       <p>
-        Fabre 웹시스템 개발 프로젝트
+        Fabre
       </p>
     </footer>
 

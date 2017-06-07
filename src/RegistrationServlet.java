@@ -29,6 +29,7 @@ public class RegistrationServlet extends HttpServlet {
 
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out;
+		String msg = "";
 		try {
 			
 
@@ -58,6 +59,9 @@ public class RegistrationServlet extends HttpServlet {
 					if (dm.retrieveUser(u_email)==null) {
 
 						dm.insertUser(user);
+						
+						msg = "회원가입에 성공했습니다.";
+						request.setAttribute("msg", msg);
 						request.getRequestDispatcher("/login.html").forward(request, response);
 
 					}else{
@@ -77,7 +81,9 @@ public class RegistrationServlet extends HttpServlet {
 			} else {
 
 				try {
-
+					
+					msg = "회원가입에 실패했습니다.";
+					request.setAttribute("msg", msg);
 					request.getRequestDispatcher("/registration.html").forward(request, response);
 
 				} catch (ServletException e) {

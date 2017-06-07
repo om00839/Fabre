@@ -7,7 +7,7 @@ public class UC_SettingBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private String u_email;
-	private int c_id;
+	private String c_id;
 	private boolean uc_favorite;
 	private String[] uc_keywords;
 	// uc_keywords는 comma separated 형식으로 저장 할 예정
@@ -34,7 +34,7 @@ public class UC_SettingBean implements Serializable {
 		return u_email;
 	}
 	
-	public int getC_id(){
+	public String getC_id(){
 		return c_id;
 	}
 	

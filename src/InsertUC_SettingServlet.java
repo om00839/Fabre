@@ -31,24 +31,38 @@ public class InsertUC_SettingServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
 		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter out = response.getWriter();
 		DatabaseManager dm = null;
 		
 		UserBean user = new UserBean();
+		
+		String msg = "";
 
 		try{
 			
 			dm = new DatabaseManager();
 			String u_email = request.getParameter("u_email");
-			int c_id=Integer.parseInt(request.getParameter("c_id"));
+			String c_id= request.getParameter("c_id");
 			
 			dm.insertUC_Setting(u_email, c_id);
+			user = dm.retrieveUser(u_email);
 			
+			ArrayList<CrawlerBean> cList = dm.retrieveDisplay_C(user);
+			ArrayList<ArticleBean> aList = dm.retrieveDisplay_A(user);
+			
+			request.setAttribute("cList", cList);
+			request.setAttribute("aList", aList);
+			
+			msg = "크롤러 추가에 성공했습니다.";
+			
+			request.setAttribute("msg", msg);
 			request.getRequestDispatcher("/setting_crawler.jsp").forward(request, response);
 			
 			
 		}catch(Exception e){
 			
+			msg = "크롤러 추가에 실패했습니다.";
+			
+			request.setAttribute("msg", msg);
 			request.getRequestDispatcher("/setting_crawler.jsp").forward(request, response);
 			e.printStackTrace();
 			

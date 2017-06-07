@@ -628,7 +628,7 @@ form {
     height: 25px;
     padding: 0 !important;
 
-    background: url(../images/deleteCrawler.svg) no-repeat;
+    background: url(../images/deletecrawler.svg) no-repeat;
     background-size: 25px;
     box-shadow: none;
     border-style: none;
@@ -638,7 +638,7 @@ form {
 
 .deleteCrawler:hover{
 
-    background: url(../images/deleteCrawler_hover.svg) no-repeat;
+    background: url(../images/deletecrawler_hover.svg) no-repeat;
     background-size: cover;
 
 }

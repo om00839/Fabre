@@ -23,7 +23,7 @@ public class DatabaseManager {
 	private static final String database = "C:\\workspace\\Fabre\\web.db";
 	private Connection conn;
 
-	
+	//커밋
 	public DatabaseManager() throws ClassNotFoundException, SQLException {
 		// database = "web.db" 디폴트 삭제;
 		Class.forName("org.sqlite.JDBC");
@@ -157,7 +157,7 @@ public class DatabaseManager {
 
 				crawler = new CrawlerBean();
 
-				crawler.setC_id(rs.getInt("c_id"));
+				crawler.setC_id(rs.getString("c_id"));
 				crawler.setC_name(rs.getString("c_name"));
 				crawler.setC_url(rs.getString("c_url"));
 
@@ -249,7 +249,7 @@ public class DatabaseManager {
 
 			while (rs.next()) {
 
-				crawler.setC_id(rs.getInt("c_id"));
+				crawler.setC_id(rs.getString("c_id"));
 				crawler.setC_url(rs.getString("c_url"));
 				crawler.setC_name(rs.getString("c_name"));
 
@@ -269,8 +269,6 @@ public class DatabaseManager {
 	}
 
 	public void deleteUC_setting(String u_email, int c_id) throws SQLException {
-
-		UC_SettingBean setting = new UC_SettingBean();
 
 		lock.lock();
 
@@ -323,7 +321,7 @@ public class DatabaseManager {
 		}
 	}
 
-	public void insertUC_Setting(String u_email, int c_id) throws SQLException {
+	public void insertUC_Setting(String u_email, String c_id) throws SQLException {
 
 		// registrationServlet에 사용
 		lock.lock();
@@ -332,7 +330,7 @@ public class DatabaseManager {
 
 			PreparedStatement prepared = conn.prepareStatement("insert into uc_setting (u_email, c_id) values (?1,?2);");
 			prepared.setString(1, u_email); // 문자
-			prepared.setInt(2, c_id);
+			prepared.setString(2, c_id);
 
 			prepared.addBatch();
 			prepared.executeBatch();

@@ -32,8 +32,9 @@ public class UpdateUserServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		DatabaseManager dm = null;
 		
-		UserBean user = (UserBean) request.getAttribute("user");
+		UserBean user = new UserBean();
 
+		String msg = "";
 		try{
 			
 			dm = new DatabaseManager();
@@ -45,16 +46,32 @@ public class UpdateUserServlet extends HttpServlet {
 				
 				dm.updateUser(u_password, u_email);
 				
-				user.setU_password(u_password);
+				user = dm.retrieveUser(u_email);
 				
-				request.getRequestDispatcher("/setting_uc_setting.jsp").forward(request, response);
+				request.setAttribute("user", user);
+				
+				msg = "회원정보 수정에 성공했습니다.";
+				
+				request.setAttribute("msg", msg);
+				request.getRequestDispatcher("/setting_user.jsp").forward(request, response);	
+			}else{
+				
+				msg = "회원정보 수정에 실패했습니다.";
+				
+				request.setAttribute("msg", msg);
+				request.getRequestDispatcher("/setting_user.jsp").forward(request, response);
 				
 			}
 			
 		}catch(Exception e){
 			
+
+			msg = "회원정보 수정에 실패했습니다.";
+			
+			request.setAttribute("msg", msg);
 			request.getRequestDispatcher("/setting_user.jsp").forward(request, response);
 			e.printStackTrace();
+			
 			
 		}finally{
 			

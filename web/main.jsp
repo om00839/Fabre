@@ -1,14 +1,10 @@
 <%@	page language = "java"
-	errorPage="errorpage.jsp" 
 	import="java.sql.*, java.util.*, Fabre.Bean.*, java.net.URLEncoder"
 	contentType = "text/html; charset=UTF-8"
 	pageEncoding = "UTF-8"
   session = "true"
 %>
 
-<jsp:useBean id="user" scope="session" class="Fabre.Bean.UserBean" />
-<jsp:useBean id="crawler" scope="session" class="Fabre.Bean.CrawlerBean" />
-<jsp:useBean id="article" scope="session" class="Fabre.Bean.ArticleBean" />
 
 <html>
 
@@ -36,6 +32,10 @@
     String auth = (String) request.getAttribute("auth");
     if (auth == null) {
       auth = (String)session.getAttribute("auth");
+    }else{
+
+    session.setAttribute("auth", auth);
+
     }
     
     if (!auth.equals("ok")) {
@@ -46,23 +46,34 @@
       }
     }
     
-    user = (UserBean) request.getAttribute("user");
+    UserBean user = (UserBean) request.getAttribute("user");
     if(user==null){
       user = (UserBean) session.getAttribute("user");
+    }else{
+
+      session.setAttribute("user", user);
+
     }
 
     ArrayList cList = (ArrayList) request.getAttribute("cList");
     if(cList==null){ 
       cList = (ArrayList) session.getAttribute("cList");
+    }else{
+    
+      session.setAttribute("cList", cList);
+
     }
 
     ArrayList aList = (ArrayList) request.getAttribute("aList");
-    if(aList == null){
-      aList = (ArrayList) session.getAttribute("aList");
-    }
+    if(aList==null){ 
 
-    session.setAttribute("user", user);
-    session.setAttribute("auth", auth);
+      aList = (ArrayList) session.getAttribute("aList");
+
+    }else{
+    
+      session.setAttribute("aList", aList);
+
+    }
 
     
   %>
@@ -83,7 +94,7 @@
         </span>
 
         <ul class="header-menunav-slidemenu" id="slidemenu">
-          <li><a target="_top">Main Page</a></li>
+          <li><a href="./main.jsp">Main Page</a></li>
           <li><a href="./setting_user.jsp">Setting Page</a></li>
           <li><a href="LogoutServlet">Logout</a></li>
         </ul>
@@ -104,16 +115,15 @@
 
           <%
 
-          
+            for (int i = 0; i<cList.size(); i++){
+          	  
+          	  CrawlerBean crawler = (CrawlerBean) cList.get(i);
+              String c_url = crawler.getC_url();
+              String c_name = crawler.getC_name();
 
-          for (int i = 0; i<cList.size(); i++){
-        	  
-        	  crawler = (CrawlerBean) cList.get(i);
-        	  out.write("<li><a target=\"_blank\" href=\"" + crawler.getC_url() + "\">" + crawler.getC_name() +"</a></li>");
+          	  out.write("<li><a target=\"_blank\" href=\"" + c_url + "\">" + c_name +"</a></li>");
 
-          }
-
-          session.setAttribute("cList", cList);
+            }
 
           %>      
 
@@ -140,19 +150,21 @@
         
           <%
 
-          for (int i = 0; i<aList.size(); i++){
-        	  
-        	  article = (ArticleBean) aList.get(i);
-        	  
-        	  out.write("<div class=\"article-content\">");
-        	  out.write("<h4>"+article.getA_title()+"</h4>");
-        	  out.write("<p> date : "+article.getA_date()+"</p>");
-        	  out.write("<div class=\'article-content-urlbox\'>");
-        	  out.write("<a href=\'"+article.getA_url()+"\' target=\'_blank\'>"+article.getA_url()+"</a></div></div>");
+            for (int i = 0; i<aList.size(); i++){
+          	  
+          	  ArticleBean article = (ArticleBean) aList.get(i);
 
-            session.setAttribute("aList", aList);
-        	  
-          }
+              String a_title = article.getA_title();
+              String a_date = article.getA_date();
+              String a_url = article.getA_url();
+          	  
+          	  out.write("<div class=\"article-content\">");
+          	  out.write("<h4>"+ a_title +"</h4>");
+          	  out.write("<p> date : "+a_date+"</p>");
+          	  out.write("<div class=\'article-content-urlbox\'>");
+          	  out.write("<a href=\'"+a_url+"\' target=\'_blank\'>"+a_url+"</a></div></div>");
+          	  
+            }
 
           %>
 
@@ -161,7 +173,7 @@
 
       <footer>
       <p>
-        Fabre 웹시스템 개발 프로젝트
+        Fabre
       </p>
     </footer>
 

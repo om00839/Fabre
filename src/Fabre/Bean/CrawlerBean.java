@@ -6,7 +6,7 @@ public class CrawlerBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	private int c_id;
+	private String c_id;
 	private String c_url;
 	private String c_name;
 
@@ -16,7 +16,7 @@ public class CrawlerBean implements Serializable{
 		this.c_name = c_name;
 	}
 
-	public void setC_id(int c_id){
+	public void setC_id(String c_id){
 		this.c_id = c_id;
 	}
 	
@@ -28,7 +28,7 @@ public class CrawlerBean implements Serializable{
 		return c_name;
 	}
 	
-	public int getC_id(){
+	public String getC_id(){
 		return c_id;
 	}
 	
