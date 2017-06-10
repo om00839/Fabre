@@ -25,13 +25,13 @@ import Fabre.Bean.UserBean;
 
 public class RegistrationServlet extends HttpServlet {
 
-	public void doGet(HttpServletRequest request, HttpServletResponse response){
+	public void doGet(HttpServletRequest request, HttpServletResponse response) {
 
 		response.setContentType("text/html; charset=UTF-8");
+
 		PrintWriter out;
 		String msg = "";
 		try {
-			
 
 			//
 			String u_email = request.getParameter("u_email");
@@ -39,32 +39,31 @@ public class RegistrationServlet extends HttpServlet {
 			String u_password = request.getParameter("u_password");
 			String u_passwordCheck = request.getParameter("u_passwordCheck");
 
-			UserBean user = new UserBean();
-			user.setU_email(u_email);
-			user.setU_password(u_password);
-			user.setU_nickname(u_nickname);
-
 			// call insertUserTable function
 			// user_ID,password,Nick_Name, passwordCheck, age)
 			boolean success = checkEmail(u_email) && checkPassword(u_password, u_passwordCheck);
-			
+
 			DatabaseManager dm = null;
 
 			if (success) {
 
 				try {
+					UserBean user = new UserBean();
 
+					user.setU_email(u_email);
+					user.setU_password(u_password);
+					user.setU_nickname(u_nickname);
 					dm = new DatabaseManager();
 
-					if (dm.retrieveUser(u_email)==null) {
+					if (dm.retrieveUser(u_email) != null) {
 
 						dm.insertUser(user);
-						
+
 						msg = "회원가입에 성공했습니다.";
 						request.setAttribute("msg", msg);
 						request.getRequestDispatcher("/login.html").forward(request, response);
 
-					}else{
+					} else {
 						System.out.println("email 중복");
 					}
 
@@ -72,16 +71,16 @@ public class RegistrationServlet extends HttpServlet {
 					e.printStackTrace();
 				} catch (Exception e) {
 					e.printStackTrace();
-				} finally{
+				} finally {
 
 					dm.close();
-					
+
 				}
-				
+
 			} else {
 
 				try {
-					
+
 					msg = "회원가입에 실패했습니다.";
 					request.setAttribute("msg", msg);
 					request.getRequestDispatcher("/registration.html").forward(request, response);

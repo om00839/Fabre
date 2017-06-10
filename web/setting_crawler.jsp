@@ -20,18 +20,6 @@
       });
     </script>
 
-    <script type="text/javascript">
-
-      var msg = <%=request.getAttribute("msg")%>;
-      
-      if (msg != null) {
-        window.alert(msg);
-      }
-
-    </script>
-
-
-
   </head>
   <body>
 
@@ -44,7 +32,7 @@
     
     if (!auth.equals("ok")) {
       try {
-        request.getRequestDispatcher("/login.html").forward(request, response);
+        response.sendRedirect("./login.html");
       }catch (Exception e) {
         e.printStackTrace();
       }
@@ -98,7 +86,7 @@
         <ul class="header-menunav-slidemenu" id="slidemenu">
           <li><a href="./main.jsp">Main Page</a></li>
           <li><a href="./setting_user.jsp">Setting Page</a></li>
-          <li><a href="LogoutServlet">Logout</a></li>
+          <li><a href="./LogoutServlet">Logout</a></li>
         </ul>
       </div>
 

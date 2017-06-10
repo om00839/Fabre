@@ -49,7 +49,16 @@ public class LoginServlet extends HttpServlet {
 			String u_email = request.getParameter("u_email");// 이거 조심
 			String u_password = request.getParameter("u_password");
 			
-			user = dm.retrieveUser(u_email);
+			if (u_email==null || u_password == null){
+				
+				response.sendRedirect("./login.html");
+				
+			}else{
+				
+				user = dm.retrieveUser(u_email);
+				
+			}
+			
 			
 			
 			if (user!=null && user.getU_password().equals(u_password)) {

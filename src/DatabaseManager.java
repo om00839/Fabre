@@ -189,7 +189,7 @@ public class DatabaseManager {
 
 		try {
 
-			String query = "select a_id, a_url, a_title, a_date from display where u_email = ?;";
+			String query = "select a_id, a_url, a_title, a_date from display where u_email = ? order by a_date DESC;";
 
 			ps = conn.prepareStatement(query);
 			ps.setString(1, user.getU_email());

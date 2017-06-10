@@ -38,42 +38,44 @@
 
     }
     
-    if (!auth.equals("ok")) {
+    if (auth==null) {
       try {
-        request.getRequestDispatcher("/login.html").forward(request, response);
+        response.sendRedirect("./login.html");
       }catch (Exception e) {
         e.printStackTrace();
       }
     }
+
+     UserBean user = (UserBean) request.getAttribute("user");
+      if(user==null){
+        user = (UserBean) session.getAttribute("user");
+      }else{
+
+        session.setAttribute("user", user);
+
+      }
+
+      ArrayList cList = (ArrayList) request.getAttribute("cList");
+      if(cList==null){ 
+        cList = (ArrayList) session.getAttribute("cList");
+      }else{
+      
+        session.setAttribute("cList", cList);
+
+      }
+
+      ArrayList aList = (ArrayList) request.getAttribute("aList");
+      if(aList==null){ 
+
+        aList = (ArrayList) session.getAttribute("aList");
+
+      }else{
+      
+        session.setAttribute("aList", aList);
+
+      }
     
-    UserBean user = (UserBean) request.getAttribute("user");
-    if(user==null){
-      user = (UserBean) session.getAttribute("user");
-    }else{
-
-      session.setAttribute("user", user);
-
-    }
-
-    ArrayList cList = (ArrayList) request.getAttribute("cList");
-    if(cList==null){ 
-      cList = (ArrayList) session.getAttribute("cList");
-    }else{
     
-      session.setAttribute("cList", cList);
-
-    }
-
-    ArrayList aList = (ArrayList) request.getAttribute("aList");
-    if(aList==null){ 
-
-      aList = (ArrayList) session.getAttribute("aList");
-
-    }else{
-    
-      session.setAttribute("aList", aList);
-
-    }
 
     
   %>
@@ -96,7 +98,7 @@
         <ul class="header-menunav-slidemenu" id="slidemenu">
           <li><a href="./main.jsp">Main Page</a></li>
           <li><a href="./setting_user.jsp">Setting Page</a></li>
-          <li><a href="LogoutServlet">Logout</a></li>
+          <li><a href="./LogoutServlet">Logout</a></li>
         </ul>
 
       </div>
