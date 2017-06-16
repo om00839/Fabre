@@ -73,7 +73,7 @@
       <!--헤더 왼쪽 로고-->
 
       <div class="header-logo">
-        <img src="./images/logo.png" alt="logo" style="height:60px; width: auto;">
+        <a href="./main.jsp"><img src="./images/logo.png" alt="logo" style="height:60px; width: auto;"></a>
       </div>
 
       <!-- 헤더 오른쪽 로그아웃/내정보페이지 -->
@@ -106,7 +106,7 @@
                 <div class="article-header"> </div>
                 <div class="article-main">
                     <div class="crawlersetting_search">
-                        <form name="retrieveCrawler" action="RetrieveCrawlerServlet" method="post">
+                        <form name="retrieveCrawler" action="RetrieveCrawlerServlet" method="post" accept-charset="utf-8">
                             <div class="crawlersetting_search_box">
                                 <h3>크롤러 검색</h3>
                                 <div class="search_box">
@@ -116,7 +116,7 @@
                             </div>
                         </form> 
 
-                        <form name = "InsertUC_SettingServlet" action="InsertUC_SettingServlet" method="post">
+                        <form name = "InsertUC_SettingServlet" action="InsertUC_SettingServlet" method="post" accept-charset="utf-8">
 
                         <div class="crawlersetting_search_result">
                                 

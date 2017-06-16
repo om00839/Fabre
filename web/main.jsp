@@ -85,7 +85,7 @@
       <!--헤더 왼쪽 로고-->
 
       <div class="header-logo">
-        <img src="./images/logo.png" alt="logo" style="height:60px; width: auto;">
+        <a href="./main.jsp"><img src="./images/logo.png" alt="logo" style="height:60px; width: auto;"></a>
       </div>
 
       <!-- 헤더 오른쪽 로그아웃/내정보페이지 -->

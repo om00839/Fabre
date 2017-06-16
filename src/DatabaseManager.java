@@ -20,15 +20,19 @@ import Fabre.Bean.UserBean;
 public class DatabaseManager {
 
 	private static final Lock lock = new ReentrantLock();
-	private static final String database = "C:\\workspace\\Fabre\\web.db";
+	private static final String database = "jdbc:mysql://localhost/test?user=minty&password=greatsqldb";
 	private Connection conn;
+	private String dbconnect = "jdbc:mysql://localhost:3306/fabre?"
+                            + "user=root&password=apmsetup";
+	
 
 	//커밋
 	public DatabaseManager() throws ClassNotFoundException, SQLException {
 		// database = "web.db" 디폴트 삭제;
-		Class.forName("org.sqlite.JDBC");
-		conn = DriverManager.getConnection("jdbc:sqlite:" + database);
+		Class.forName("com.mysql.jdbc.Driver");
+		conn = DriverManager.getConnection(dbconnect);
 		conn.setAutoCommit(false);
+		
 
 		// conn.close(); 항상 해줄것.
 	}
@@ -42,7 +46,7 @@ public class DatabaseManager {
 		try {
 
 			PreparedStatement prepared = conn
-					.prepareStatement("insert into user (u_email, u_nickname, u_password) values (?1,?2,?3);");
+					.prepareStatement("insert into user (u_email, u_nickname, u_password) values (?,?,?);");
 			prepared.setString(1, user.getU_email()); // 문자
 			prepared.setString(2, user.getU_nickname());
 			prepared.setString(3, user.getU_password());
@@ -323,12 +327,12 @@ public class DatabaseManager {
 
 	public void insertUC_Setting(String u_email, String c_id) throws SQLException {
 
-		// registrationServlet에 사용
+		
 		lock.lock();
 
 		try {
 
-			PreparedStatement prepared = conn.prepareStatement("insert into uc_setting (u_email, c_id) values (?1,?2);");
+			PreparedStatement prepared = conn.prepareStatement("insert into uc_setting (u_email, c_id) values (?,?);");
 			prepared.setString(1, u_email); // 문자
 			prepared.setString(2, c_id);
 
@@ -373,7 +377,9 @@ public class DatabaseManager {
 
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 
-		DatabaseManager dm = new DatabaseManager();
+//		DatabaseManager dm = new DatabaseManager();
+//		System.out.println("접속에 성공했습니다.");
+//		dm.close();
 
 		// PreparedStatement prepared = dm.conn
 		// .prepareStatement("insert into crawler (c_name , c_url) values
@@ -384,30 +390,30 @@ public class DatabaseManager {
 		// prepared.executeBatch();
 		// prepared.close();
 
-		UserBean user = new UserBean();
-		user.setU_email("sparrow_a1@naver.com");
-		user.setU_password("123123");
-		user.setU_nickname("Liver");
-		
-		try{
-			
-			System.out.println(user.getU_email());
-			
-			ArrayList<CrawlerBean> al = dm.retrieveDisplay_C(user);
-			System.out.println(al.size());
-			
-			
-			
-			for (int i = 0; i<al.size(); i++){
-				
-				CrawlerBean c = new CrawlerBean();
-				c = al.get(i);				
-				System.out.println(c.getC_id());
-			}
-			
-		}catch(Exception e ){
-			e.printStackTrace();
-		}
+//		UserBean user = new UserBean();
+//		user.setU_email("sparrow_a1@naver.com");
+//		user.setU_password("123123");
+//		user.setU_nickname("Liver");
+//		
+//		try{
+//			
+//			System.out.println(user.getU_email());
+//			
+//			ArrayList<CrawlerBean> al = dm.retrieveDisplay_C(user);
+//			System.out.println(al.size());
+//			
+//			
+//			
+//			for (int i = 0; i<al.size(); i++){
+//				
+//				CrawlerBean c = new CrawlerBean();
+//				c = al.get(i);				
+//				System.out.println(c.getC_id());
+//			}
+//			
+//		}catch(Exception e ){
+//			e.printStackTrace();
+//		}
 		
 
 	}

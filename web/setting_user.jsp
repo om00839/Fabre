@@ -126,7 +126,7 @@
       <!--헤더 왼쪽 로고-->
 
       <div class="header-logo">
-        <img src="./images/logo.png" alt="logo" style="height:60px; width: auto;">
+        <a href="./main.jsp"><img src="./images/logo.png" alt="logo" style="height:60px; width: auto;"></a>
       </div>
 
       <!-- 헤더 오른쪽 로그아웃/내정보페이지 -->
@@ -161,7 +161,7 @@
                 <div class="article-header"> </div>
                 <div class="article-main">
 
-                    <form name="usersetting" class="registration-main" action="UpdateUserServlet" method="post" onsubmit="return formValidation();">
+                    <form name="usersetting" class="registration-main" action="UpdateUserServlet" method="post" accept-charset= "utf-8" onsubmit="return formValidation();">
 
                       <%
 

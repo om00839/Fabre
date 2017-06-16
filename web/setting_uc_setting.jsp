@@ -78,7 +78,7 @@
       <!--헤더 왼쪽 로고-->
 
       <div class="header-logo">
-        <img src="./images/logo.png" alt="logo" style="height:60px; width: auto;">
+        <a href="./main.jsp"><img src="./images/logo.png" alt="logo" style="height:60px; width: auto;"></a>
       </div>
 
       <!-- 헤더 오른쪽 로그아웃/내정보페이지 -->
@@ -131,7 +131,7 @@
 
                                   out.write("<div class=\"myCrawler\">");
 
-                                  out.write("<form name=\"updateUC_Setting\" action=\"UpdateUC_SettingServlet\" method=\"post\">");
+                                  out.write("<form name=\"updateUC_Setting\" action=\"UpdateUC_SettingServlet\" method=\"post\" accept-charset=\"utf-8\">");
                                   out.write("<button type=\"submit\" class=\"favorite\" name=\"u_favorite\" value=\"favorite\"></button>");
                                   out.write("<input type=\"hidden\" name=\"u_email\" value=\""+u_email+"\">");
                                   out.write("<input type=\"hidden\" name=\"c_id\" value=\""+c_id+"\">");
@@ -139,7 +139,7 @@
 
                                   out.write("<h4>"+c_name+"</h4>");
                                   out.write("<p class=\"myCrawler_url\">"+c_url+"</p>");
-                                  out.write("<form name=\"deleteUC_Setting\" action=\"DeleteUC_SettingServlet\" method=\"post\">");
+                                  out.write("<form name=\"deleteUC_Setting\" action=\"DeleteUC_SettingServlet\" method=\"post\" accept-charset=\"utf-8\">");
                                   out.write("<button class = \"deleteCrawler\" type=\"submit\"></button>");
                                   out.write("<input type=\"hidden\" name=\"u_email\" value=\""+u_email+"\">");
                                   out.write("<input type=\"hidden\" name=\"c_id\" value=\""+c_id+"\">");
